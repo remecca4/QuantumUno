@@ -4,11 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewHGateCard", menuName = "Cards/H Gate Card")]
 public class H_Gate_Card : Card
 {
-    public void Initialize(Sprite sprite)
+    public override void Play()
     {
-        type = "wild";
-        cardSprite = sprite;
-    }
 
+    }
 
 }

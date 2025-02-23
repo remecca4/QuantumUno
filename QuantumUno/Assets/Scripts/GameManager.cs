@@ -1,51 +1,100 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Card> deck;
-    public Normal_Card norm_card_red;
-    public Normal_Card norm_card_blue;
-    public Normal_Card norm_card_green;
-    public Normal_Card norm_card_yellow;
-    public ReverseCard rev_card;
-    public SkipCard skip_card;
-    public X_Gate_Card x_card;
-    public Y_Gate_Card y_card;
-    public Z_Gate_Card z_card;
-    public H_Gate_Card h_card;
+    public List<GameObject> deck;
+    public List<GameObject> discard_pile;
+    public List<Player_Base> players;
+    public GameObject norm_card_red;
+    public GameObject norm_card_blue;
+    public GameObject norm_card_green;
+    public GameObject norm_card_yellow;
+    public GameObject rev_card;
+    public GameObject skip_card;
+    public GameObject x_card;
+    public GameObject y_card;
+    public GameObject z_card;
+    public GameObject h_card;
+    public Transform deck_pos;
+    private int currentPlayerIndex = 0;
+    //for reverse cards cw: player index increases, ccw: player index decreases
+    private string turn_order = "cw";
 
     // Start is called before the first frame update
     void Start()
     {
-
         initialize_deck();
+        //StartCoroutine(SetupGame());
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SetupGame()
     {
-        
+        // Shuffle with potential animation
+        shuffle();
+        Debug.Log("Shuffling...");
+        yield return new WaitForSeconds(1.5f); // Pause for shuffle animation
+
+        // Deal after shuffle
+        deal();
+        Debug.Log("Dealing cards...");
+    }
+    IEnumerator GameLoop()
+    {
+        bool gameOver = false;
+        while (!gameOver)
+        {
+            Player_Base currentPlayer = players[currentPlayerIndex];
+            Debug.Log($"Player {currentPlayerIndex + 1}'s turn");
+
+            // Wait for player to make a move
+            GameObject topCard = discard_pile[discard_pile.Count-1];
+            //add this coroutine to player classes or game manager?
+            // yield return StartCoroutine(currentPlayer.TakeTurn(topCard,deck));
+            //
+  
+            // Check for win condition
+            if (currentPlayer.hand.Count==0)
+            {
+                Debug.Log($"Player {currentPlayerIndex + 1} wins!");
+                gameOver = true;
+                break;
+            }
+
+            // Advance to next player
+            UpdateTurnOrder();
+
+            yield return new WaitForSeconds(0.5f); // Small delay between turns
+        }
     }
     void initialize_deck()
     {
-        for(int num=0; num<10; num++)
+        /*Adds 2 of each normal card and 5 of each wild card to the deck and makes the cards visible in the center*/
+        for (int num=0; num<10; num++)
         {
                 for (int x = 0; x < 2; ++x)
                 {
-                Normal_Card red = ScriptableObject.CreateInstance<Normal_Card>();
-                red.Initialize(new List<string> { "Red" }, new List<int> { num },norm_card_red.cardSprite);
-
-                Normal_Card blue = ScriptableObject.CreateInstance<Normal_Card>();
-                blue.Initialize(new List<string> { "Blue" }, new List<int> { num }, norm_card_blue.cardSprite);
-
-                Normal_Card yellow = ScriptableObject.CreateInstance<Normal_Card>();
-                yellow.Initialize(new List<string> { "Yellow" }, new List<int> { num }, norm_card_yellow.cardSprite);
-
-                Normal_Card green = ScriptableObject.CreateInstance<Normal_Card>();
-                green.Initialize(new List<string> { "Green" }, new List<int> { num }, norm_card_green.cardSprite);
-
+                GameObject red =Instantiate(norm_card_red,deck_pos);
+                red.SetActive(true);
+                red.GetComponent<Normal_Card>().number[0] = num;
+                red.GetComponent<Normal_Card>().ShowBack();
+                GameObject blue = Instantiate(norm_card_blue, deck_pos);
+                blue.GetComponent<Normal_Card>().number[0] = num;
+                blue.GetComponent<Normal_Card>().ShowBack();
+                blue.SetActive(true);
+                GameObject yellow = Instantiate(norm_card_yellow, deck_pos);
+                yellow.GetComponent<Normal_Card>().number[0] = num;
+                yellow.GetComponent<Normal_Card>().ShowBack();
+                yellow.SetActive(true);
+                GameObject green = Instantiate(norm_card_green, deck_pos);
+                green.GetComponent<Normal_Card>().number[0] = num;
+                green.GetComponent<Normal_Card>().ShowBack();
+                green.SetActive(true);
                 deck.Add(red);
                 deck.Add(blue);
                 deck.Add(green);
@@ -57,26 +106,35 @@ public class GameManager : MonoBehaviour
         }
         for(int i=0; i<5; ++i)
         {
-            ReverseCard rev = ScriptableObject.CreateInstance<ReverseCard>();
-            rev.Initialize(rev_card.cardSprite);
+            GameObject rev = Instantiate(rev_card, deck_pos);
+            rev.SetActive(true);
+            rev.GetComponent<ReverseCard>().ShowBack();
             deck.Add(rev);
-            SkipCard skip = ScriptableObject.CreateInstance<SkipCard>();
-            skip.Initialize(skip_card.cardSprite);
+            GameObject skip = Instantiate(skip_card,deck_pos);
+            skip.GetComponent<SkipCard>().ShowBack();
+            skip.SetActive(true);
             deck.Add(skip);
-            X_Gate_Card x = ScriptableObject.CreateInstance<X_Gate_Card>();
-            x.Initialize(x_card.cardSprite);
+            GameObject x = Instantiate(x_card,deck_pos);
+            x.SetActive(true);
+            x.GetComponent<X_Gate_Card>().ShowBack();
             deck.Add(x);
-            Y_Gate_Card y = ScriptableObject.CreateInstance<Y_Gate_Card>();
-            y.Initialize(y_card.cardSprite);
+            GameObject y = Instantiate(y_card, deck_pos);
+            y.GetComponent<Y_Gate_Card>().ShowBack();
+            y.SetActive(true);
             deck.Add(y);
-            Z_Gate_Card z = ScriptableObject.CreateInstance<Z_Gate_Card>();
-            z.Initialize(z_card.cardSprite);
+            GameObject z = Instantiate(z_card, deck_pos);
+            z.GetComponent<Z_Gate_Card>().ShowBack();
+            z.SetActive(true);
             deck.Add(z);
-            H_Gate_Card h = ScriptableObject.CreateInstance<H_Gate_Card>();
-            h.Initialize(h_card.cardSprite);
+            GameObject h = Instantiate(h_card, deck_pos);
+            h.SetActive(true);
+            h.GetComponent<H_Gate_Card>().ShowBack();
             deck.Add(h);
 
         }
 
     }
+    void shuffle() { }
+    void deal() { }
+    void UpdateTurnOrder() { }
 }
