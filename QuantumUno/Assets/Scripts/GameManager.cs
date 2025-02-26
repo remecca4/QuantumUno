@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
             // Wait for player to make a move
             GameObject topCard = discard_pile[discard_pile.Count-1];
             //add this coroutine to player classes or game manager?
-            // yield return StartCoroutine(currentPlayer.TakeTurn(topCard,deck));
+            yield return StartCoroutine(currentPlayer.TakeTurn(topCard,deck));
             //
   
             // Check for win condition

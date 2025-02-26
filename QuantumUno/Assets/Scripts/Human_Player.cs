@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Human_Player : Player_Base
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    virtual IEnumerator TakeTurn(topcard, deck)
     {
-        
+
     }
 }
