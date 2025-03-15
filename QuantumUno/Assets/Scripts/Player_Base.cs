@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Base : MonoBehaviour
 {
     public List<Card> hand;
-   public virtual IEnumerator TakeTurn( ref GameObject topcard, ref GameObject topDiscard, ref int turnOrder)
+   public virtual IEnumerator TakeTurn(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
     {
 
     }

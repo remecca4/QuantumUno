@@ -4,7 +4,7 @@ using UnityEngine;
 //[CreateAssetMenu(fileName = "SkipCard", menuName = "Cards/Skip Card")]
 public class SkipCard : Card
 {
-    public override void  Play(ref GameObject topcard, ref GameObject topDiscard, ref int turnOrder)
+    public override void  Play(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
     {
         if (turnOrder > 1 || turnOrder < -1)
             turnOrder /= 2;

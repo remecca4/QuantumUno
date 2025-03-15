@@ -26,7 +26,7 @@ public class Card : MonoBehaviour
     {
         cardImage.sprite = backSprite;
     }
-    public virtual void Play(ref GameObject topcard, ref GameObject topDiscard, ref int turnOrder)
+    public virtual void Play(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
     {
        
     }

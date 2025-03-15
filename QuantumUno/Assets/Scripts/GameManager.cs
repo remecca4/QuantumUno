@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public Transform deck_pos;
     private int currentPlayerIndex = 0;
     //for reverse cards cw: player index increases, ccw: player index decreases
-    private string turn_order = "cw";
+    public int turn_order = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -52,11 +52,11 @@ public class GameManager : MonoBehaviour
             Player_Base currentPlayer = players[currentPlayerIndex];
             Debug.Log($"Player {currentPlayerIndex + 1}'s turn");
 
-            // Wait for player to make a move
-            GameObject topCard = discard_pile[discard_pile.Count-1];
+           
+            
             //add this coroutine to player classes or game manager?
-            yield return StartCoroutine(currentPlayer.TakeTurn(topCard,deck));
-            //
+            yield return StartCoroutine(currentPlayer.TakeTurn(deck,discard_pile,turn_order));
+            
   
             // Check for win condition
             if (currentPlayer.hand.Count==0)
@@ -66,8 +66,7 @@ public class GameManager : MonoBehaviour
                 break;
             }
 
-            // Advance to next player
-            UpdateTurnOrder();
+            currentPlayerIndex += turn_order;
 
             yield return new WaitForSeconds(0.5f); // Small delay between turns
         }
@@ -136,17 +135,5 @@ public class GameManager : MonoBehaviour
     }
     void shuffle() { }
     void deal() { }
-    void UpdateTurnOrder() 
-    {
-    if (turn_order == "cw")
-    {
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
-    }
-    else if (turn_order == "ccw")
-    {
-        currentPlayerIndex = (currentPlayerIndex - 1 + players.Count) % players.Count;
-    }
-
-    Debug.Log($"Turn changed! Now Player {currentPlayerIndex + 1}'s turn.");
-    }
+    
 }
