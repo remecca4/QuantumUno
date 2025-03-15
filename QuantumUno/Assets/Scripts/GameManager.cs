@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
             // Wait for player to make a move
             GameObject topCard = discard_pile[discard_pile.Count-1];
             //add this coroutine to player classes or game manager?
-            // yield return StartCoroutine(currentPlayer.TakeTurn(topCard,deck));
+            yield return StartCoroutine(currentPlayer.TakeTurn(topCard,deck));
             //
   
             // Check for win condition
@@ -136,5 +136,17 @@ public class GameManager : MonoBehaviour
     }
     void shuffle() { }
     void deal() { }
-    void UpdateTurnOrder() { }
+    void UpdateTurnOrder() 
+    {
+    if (turn_order == "cw")
+    {
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
+    }
+    else if (turn_order == "ccw")
+    {
+        currentPlayerIndex = (currentPlayerIndex - 1 + players.Count) % players.Count;
+    }
+
+    Debug.Log($"Turn changed! Now Player {currentPlayerIndex + 1}'s turn.");
+    }
 }

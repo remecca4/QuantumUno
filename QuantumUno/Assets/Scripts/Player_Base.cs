@@ -5,14 +5,8 @@ using UnityEngine;
 public class Player_Base : MonoBehaviour
 {
     public List<Card> hand;
-    void Start()
+   virtual IEnumerator TakeTurn(topcard, deck)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
