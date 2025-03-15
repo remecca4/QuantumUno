@@ -1,18 +1,18 @@
 {
   "context": {
-    "projectPath": "C:/Users/lucas/OneDrive/Documents/GitHub/QuantumUno/QuantumUno/Packages",
+    "projectPath": "C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno/Packages",
     "unityVersion": "6000.0.38f1"
   },
   "inputs": [
-    "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\QuantumUno\\QuantumUno\\Packages\\manifest.json",
-    "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\QuantumUno\\QuantumUno\\Packages\\packages-lock.json",
+    "C:\\Users\\Rachel\\Documents\\GitHub\\QuantumUno\\QuantumUno\\Packages\\manifest.json",
+    "C:\\Users\\Rachel\\Documents\\GitHub\\QuantumUno\\QuantumUno\\Packages\\packages-lock.json",
     "C:\\Program Files\\Unity\\Hub\\Editor\\6000.0.38f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1"
   ],
   "outputs": {
     "com.unity.multiplayer.center@1.0.0": {
       "name": "com.unity.multiplayer.center",
       "displayName": "Multiplayer Center",
-      "resolvedPath": "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\QuantumUno\\QuantumUno\\Library\\PackageCache\\com.unity.multiplayer.center@f502d8ac613f",
+      "resolvedPath": "C:\\Users\\Rachel\\Documents\\GitHub\\QuantumUno\\QuantumUno\\Library\\PackageCache\\com.unity.multiplayer.center@f502d8ac613f",
       "fingerprint": "f502d8ac613fa076192423e73892fbd89eb4049b",
       "editorCompatibility": "6000.0.0a1",
       "version": "1.0.0",
@@ -22,7 +22,7 @@
     "com.unity.ugui@2.0.0": {
       "name": "com.unity.ugui",
       "displayName": "Unity UI",
-      "resolvedPath": "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\QuantumUno\\QuantumUno\\Library\\PackageCache\\com.unity.ugui@03407c6d8751",
+      "resolvedPath": "C:\\Users\\Rachel\\Documents\\GitHub\\QuantumUno\\QuantumUno\\Library\\PackageCache\\com.unity.ugui@03407c6d8751",
       "fingerprint": "03407c6d875144b0a8ffdc0af3e0d5cccfa5a4ae",
       "editorCompatibility": "2019.2.0a1",
       "version": "2.0.0",

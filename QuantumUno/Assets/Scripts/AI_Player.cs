@@ -19,7 +19,7 @@ public class AI_Player : Player_Base
         
     }
 
-    public IEnumerator TakeTurn(GameObject topCard, List<GameObject> deck)
+    public IEnumerator TakeTurn(ref GameObject topcard, ref GameObject topDiscard, ref int turnOrder)
     {
         Debug.Log("AI is thinking...");
         yield return new WaitForSeconds(1.0f); // Simulate thinking time

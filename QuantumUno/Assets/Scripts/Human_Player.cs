@@ -5,7 +5,7 @@ using UnityEngine;
 public class Human_Player : Player_Base
 {
 
-    virtual IEnumerator TakeTurn(topcard, deck)
+    public override IEnumerator TakeTurn(ref GameObject topcard, ref GameObject topDiscard, ref int turnOrder)
     {
 
     }
