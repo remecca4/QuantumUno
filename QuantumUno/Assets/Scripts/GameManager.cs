@@ -136,5 +136,17 @@ public class GameManager : MonoBehaviour
     }
     void shuffle() { }
     void deal() { }
-    void UpdateTurnOrder() { }
+    void UpdateTurnOrder() 
+    {
+    if (turn_order == "cw")
+    {
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
+    }
+    else if (turn_order == "ccw")
+    {
+        currentPlayerIndex = (currentPlayerIndex - 1 + players.Count) % players.Count;
+    }
+
+    Debug.Log($"Turn changed! Now Player {currentPlayerIndex + 1}'s turn.");
+    }
 }
