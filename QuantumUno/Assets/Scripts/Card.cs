@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 
 {
-    //if color or number doesn't matter leave empty
+    //if color or number doesn't matter leave both blank, color and number lists will always have size two
     public List<string> color;
     public List<int> number;
     public Sprite frontSprite;
