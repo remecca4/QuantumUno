@@ -1,13 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//[CreateAssetMenu(fileName = "NewXGateCard", menuName = "Cards/X Gate Card")]
+
 public class X_Gate_Card : Card
 {
-    public override void Play(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
+    public override void Play(ref List<GameObject> deck, 
+                              ref List<GameObject> discard_pile, 
+                              ref int turnOrder)
     {
+
         if (turnOrder > 1 || turnOrder < -1)
             turnOrder /= 2;
 
+        if (discard_pile.Count > 0) {
+            GameObject topCard = discard_pile[discard_pile.Count - 1];
+            Card topCardComponent = topCard.GetComponent<Card>();
+
+            
+            if (topCardComponent.color[0] == "red") {
+                topCardComponent.color[0] = "blue";
+            }
+            else if (topCardComponent.color[0] == "yellow") {
+                topCardComponent.color[0] = "green";
+            }
+            
+        }
+
+
+        discard_pile.Add(this.gameObject);
     }
 }
