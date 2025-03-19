@@ -34,6 +34,24 @@ public class Y_Gate_Card : Card
                     break;
             }
 
+            //for super position card
+            currentColor = cardComponent.color[1];
+            switch (currentColor)
+            {
+                case "red":
+                    cardComponent.color[1] "blue"; //|0> to |1>
+                    break;
+                case "blue":
+                    cardComponent.color[1] = "yellow"; // |1> to -|0>
+                    break;
+                case "yellow":
+                    cardComponent.color[1] = "green"; // -|0> to -|1>
+                    break;
+                case "green":
+                    cardComponent.color[1] = "red"; // -|1> to |0>
+                    break;
+            }
+
             Debug.Log($"Y Gate applied! Color changed from {currentColor} to {cardComponent.color[0]}");
 
         }
