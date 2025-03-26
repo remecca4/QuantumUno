@@ -39,7 +39,7 @@ public class Y_Gate_Card : Card
             switch (currentColor)
             {
                 case "red":
-                    cardComponent.color[1] "blue"; //|0> to |1>
+                    cardComponent.color[1] = "blue"; //|0> to |1>
                     break;
                 case "blue":
                     cardComponent.color[1] = "yellow"; // |1> to -|0>
