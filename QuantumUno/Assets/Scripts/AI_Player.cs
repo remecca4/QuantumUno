@@ -18,10 +18,10 @@ public class AI_Player : Player_Base
         foreach (GameObject cardObject in hand)
         {
             Card card = cardObject.GetComponent<Card>(); // Get the Card component
-            GameObject cardGameObject = card.gameObject;
+        
             if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]))
             {
-                PlayCard(cardGameObject); // Pass the GameObject, not the Card component
+                PlayCard(cardObject); // Pass the GameObject, not the Card component
                 cardPlayed = true;
                 break;
             }
@@ -48,7 +48,7 @@ public class AI_Player : Player_Base
         cardObject.SetActive(true); // Show the card
         
         // Remove from hand
-        hand.Remove(card);
+        hand.Remove(cardObject);
         Debug.Log($"AI played a card: {card.color[0]} {card.number[0]}");
     }
 
