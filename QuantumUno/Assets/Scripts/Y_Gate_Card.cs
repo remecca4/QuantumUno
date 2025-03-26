@@ -12,9 +12,9 @@ public class Y_Gate_Card : Card
         if (turnOrder > 1 || turnOrder < -1) turnOrder /= 2;
 
         GameObject topCard = discard_pile[discard_pile.Count - 1];
-        Card cardComponent = topCard.GetComponent<cardComponent>();
+        Card cardComponent = topCard.GetComponent<Card>();
         
-        if(cardComponent != null && cardComponent.color[0]){
+        if(cardComponent != null){
             string currentColor = cardComponent.color[0];
 
             // flip the color and add a phase change
