@@ -33,6 +33,21 @@ public class GameManager : MonoBehaviour
 
     } // Start()
 
+    public static GameManager Instance { get; private set; }
+
+    private void Awake() {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Prevent duplicates
+        }
+        else
+        {
+            Instance = this;
+            // Optional: Uncomment if GameManager should persist across scenes
+            // DontDestroyOnLoad(gameObject);
+        }
+    }
+
     IEnumerator SetupGame()
     {
         // Shuffle with potential animation

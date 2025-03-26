@@ -36,24 +36,20 @@ public class AI_Player : Player_Base
         Debug.Log("AI's turn is over.");
     }
 
-    private void PlayCard(GameObject cardObject)
-    {
-        Card card = cardObject.GetComponent<Card>(); // Get the Card component
-        card.Play(ref GameManager.Instance.deck, ref GameManager.Instance.discard_pile, ref GameManager.Instance.turn_order);
-        hand.Remove(cardObject);
-        GameManager.Instance.UpdateTopCard(cardObject); // Update top card in GameManager
-
+    private void PlayCard(GameObject cardObject) {
+        Card card = cardObject.GetComponent<Card>();
+        
+        // Let the card handle its own logic (e.g., ReverseCard flips turn_order)
+        card.Play(ref GameManager.Instance.deck, ref GameManager.Instance.discard_pile, 
+                  ref GameManager.Instance.turn_order);
+        
+        // Update GameManager's discard pile (centralized)
+        GameManager.Instance.discard_pile.Add(cardObject);
+        cardObject.SetActive(true); // Show the card
+        
+        // Remove from hand
+        hand.Remove(card);
         Debug.Log($"AI played a card: {card.color[0]} {card.number[0]}");
-
-        // Handle special cards
-        if (card is ReverseCard)
-        {
-            GameManager.Instance.ReverseTurnOrder();
-        }
-        else if (card is SkipCard)
-        {
-            GameManager.Instance.SkipNextPlayer();
-        }
     }
 
     private void DrawCard(List<GameObject> deck)
