@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AI_Player : Player_Base
 {
-    public IEnumerator TakeTurn()
+    public override IEnumerator TakeTurn()
     {
         Debug.Log("AI is thinking...");
         yield return new WaitForSeconds(1.0f); // Simulate thinking time
@@ -15,7 +15,7 @@ public class AI_Player : Player_Base
         bool cardPlayed = false;
 
         // Check for a valid card to play
-        foreach (Card cardObject in hand)
+        foreach (GameObject cardObject in hand)
         {
             Card card = cardObject.GetComponent<Card>(); // Get the Card component
             GameObject cardGameObject = card.gameObject;
@@ -40,7 +40,7 @@ public class AI_Player : Player_Base
     {
         Card card = cardObject.GetComponent<Card>(); // Get the Card component
         card.Play(ref GameManager.Instance.deck, ref GameManager.Instance.discard_pile, ref GameManager.Instance.turn_order);
-        hand.Remove(card);
+        hand.Remove(cardObject);
         GameManager.Instance.UpdateTopCard(cardObject); // Update top card in GameManager
 
         Debug.Log($"AI played a card: {card.color[0]} {card.number[0]}");
@@ -63,7 +63,7 @@ public class AI_Player : Player_Base
             GameObject drawnCard = deck[0];
             Card currentCard = drawnCard.GetComponent<Card>();
             deck.RemoveAt(0);
-            hand.Add(currentCard);
+            hand.Add(drawnCard);
             Debug.Log("AI drew a card.");
         }
         else

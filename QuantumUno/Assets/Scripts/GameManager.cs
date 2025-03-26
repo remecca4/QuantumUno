@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Player {currentPlayerIndex + 1}'s turn");
             
             //add this coroutine to player classes or game manager?
-            yield return StartCoroutine(currentPlayer.TakeTurn(deck,discard_pile,turn_order));
+            yield return StartCoroutine(currentPlayer.TakeTurn());
   
             // Check for win condition
             if (currentPlayer.hand.Count==0)
@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
     void shuffle()
     {
         for(int i = deck.Count - 1; i > 0; i--){
-            int randomIndex = randomIndex.Range(0, i + 1);
+            int randomIndex = Random.Range(0, i + 1);
             GameObject temp = deck[i];
             deck[i] = deck[randomIndex];
             deck[randomIndex] = temp;

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Human_Player : Player_Base
 {
 
-    public override IEnumerator TakeTurn(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
+    public override IEnumerator TakeTurn()
     {
-
+        yield return new WaitForSeconds(1.0f);
     }
 }

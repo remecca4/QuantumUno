@@ -14,15 +14,15 @@ public class Z_Gate_Card : Card
         if (turnOrder > 1 || turnOrder < -1)
             turnOrder /= 2;
 
-        if (discard_top.getComponent<Card>.color[0] == "blue")
-            discard_top.getComponent<Card>.color[0] = "green";
-        else if (discard_top.getComponent<Card>.color[0] == "green")
-            discard_top.getComponent<Card>.color[0] = "blue";
+        if (discard_top.GetComponent<Card>().color[0] == "blue")
+            discard_top.GetComponent<Card>().color[0] = "green";
+        else if (discard_top.GetComponent<Card>().color[0] == "green")
+            discard_top.GetComponent<Card>().color[0] = "blue";
 
-        if (discard_top.getComponent<Card>.color[1] == "blue")
-            discard_top.getComponent<Card>.color[1] = "green";
-        else if (discard_top.getComponent<Card>.color[1] == "green")
-            discard_top.getComponent<Card>.color[1] = "blue";
+        if (discard_top.GetComponent<Card>().color[1] == "blue")
+            discard_top.GetComponent<Card>().color[1] = "green";
+        else if (discard_top.GetComponent<Card>().color[1] == "green")
+            discard_top.GetComponent<Card>().color[1] = "blue";
     }
 
 }
