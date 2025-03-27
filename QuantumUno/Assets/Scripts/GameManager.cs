@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> deck;
     public List<GameObject> discard_pile;
-    public List<Player_Base> players;
+    public List<GameObject> players;
     public GameObject norm_card_red;
     public GameObject norm_card_blue;
     public GameObject norm_card_green;
@@ -19,16 +19,23 @@ public class GameManager : MonoBehaviour
     public GameObject y_card;
     public GameObject z_card;
     public GameObject h_card;
+    public GameObject player1;
+    public GameObject player2;
+    public GameObject player3;
+    public GameObject player4;
     public Transform deck_pos;
     private int currentPlayerIndex = 0;
+    public GameObject discard_pos;
     //for reverse cards cw: player index increases, ccw: player index decreases
     public int turn_order = 1;
 
     // Start is called before the first frame update
     void Start()
     {
+        setup_players();
         initialize_deck();
-        //StartCoroutine(SetupGame());
+        
+        StartCoroutine(SetupGame());
 
 
     } // Start()
@@ -58,6 +65,12 @@ public class GameManager : MonoBehaviour
         // Deal after shuffle
         deal();
         Debug.Log("Dealing cards...");
+        
+        GameObject firstCard = deck[deck.Count - 1];
+        firstCard.GetComponent<RectTransform>().position = discard_pos.transform.position;
+        firstCard.GetComponent<Card>().ShowFront();
+        discard_pile.Add(firstCard);
+        StartCoroutine(GameLoop());
     } // SetupGame()
 
     IEnumerator GameLoop()
@@ -65,8 +78,8 @@ public class GameManager : MonoBehaviour
         bool gameOver = false;
         while (!gameOver)
         {
-            Player_Base currentPlayer = players[currentPlayerIndex];
-            Debug.Log($"Player {currentPlayerIndex + 1}'s turn");
+            Player_Base currentPlayer = players[currentPlayerIndex%players.Count].GetComponent<Player_Base>();
+            Debug.Log($"Player {currentPlayerIndex % players.Count + 1}'s turn");
             
             //add this coroutine to player classes or game manager?
             yield return StartCoroutine(currentPlayer.TakeTurn());
@@ -74,7 +87,7 @@ public class GameManager : MonoBehaviour
             // Check for win condition
             if (currentPlayer.hand.Count==0)
             {
-                Debug.Log($"Player {currentPlayerIndex + 1} wins!");
+                Debug.Log($"Player {currentPlayerIndex % players.Count + 1} wins!");
                 gameOver = true;
                 break;
             } // if
@@ -89,6 +102,7 @@ public class GameManager : MonoBehaviour
     void initialize_deck()
     {
         // Adds 2 of each normal card 0-9 and 5 of each wild card to the deck and makes the cards visible in the center
+        
         for (int num = 0; num < 10; num++)
         {
             for (int x = 0; x < 2; ++x)
@@ -154,7 +168,13 @@ public class GameManager : MonoBehaviour
 
         } // for
     } // initialize_deck()
-
+    void setup_players()
+    {
+        players.Add(player1);
+        players.Add(player2);
+        players.Add(player3);
+        players.Add(player4);
+    }
     // fisher-yates shuffle algorithm
     // iteratres through the list and swappes each element with a 
     // randomly chosen element from the remaining unshuffled portion of the list
@@ -182,7 +202,7 @@ public class GameManager : MonoBehaviour
                 {
                     GameObject card = deck[0];
                     deck.RemoveAt(0);
-                    players[i].hand.Add(card);
+                    players[i].GetComponent<Player_Base>().hand.Add(card);
                     card.SetActive(false); // Hide the card in the player's hand
                 }
                 else

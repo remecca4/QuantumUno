@@ -88,7 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc299d20b7e457548851c7cf7a39ab49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: []
-  number: 
+  color:
+  - 
+  - 
+  number: 0a0000000a000000
   frontSprite: {fileID: 21300000, guid: cf5b5dc3cca103c4bb1e4e97d07a4451, type: 3}
   backSprite: {fileID: 21300000, guid: 96e66d64aca50bb439c6e97d30b9c271, type: 3}

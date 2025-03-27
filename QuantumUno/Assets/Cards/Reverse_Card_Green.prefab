@@ -90,6 +90,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color:
   - green
-  number: 
+  number: 0a0000000a000000
   frontSprite: {fileID: 21300000, guid: 9bc64e37784e8af4da023ac766a5aa00, type: 3}
   backSprite: {fileID: 21300000, guid: 96e66d64aca50bb439c6e97d30b9c271, type: 3}
