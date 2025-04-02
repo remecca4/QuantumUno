@@ -192,27 +192,58 @@ public class GameManager : MonoBehaviour
     // distribute cards to each plaer at beginning of game
     // determine how many cards to deal based on the number of players
     void deal()
+{
+    int numberOfCardsPerPlayer = 7;
+
+    // define hardcoded anchor positions for each player
+    Vector3[] handAnchors = new Vector3[]
     {
-        int numberOfCardsPerPlayer = 7; // Standard UNO starting hand size
-        for (int i = 0; i < players.Count; i++)
+        new Vector3(-3f, -6f, 0),   // Player 1 (bottom)
+        new Vector3(-12f, 2f, 0),   // Player 2 (left)
+        new Vector3(-3f, 6f, 0),    // Player 3 (top)
+        new Vector3(12f, 2f, 0)     // Player 4 (right)
+    };
+
+    for (int i = 0; i < players.Count; i++)
+    {
+        Player_Base player = players[i].GetComponent<Player_Base>();
+        Vector3 anchor = handAnchors[i];
+
+        for (int j = 0; j < numberOfCardsPerPlayer; j++)
         {
-            for (int j = 0; j < numberOfCardsPerPlayer; j++)
+            if (deck.Count > 0)
             {
-                if (deck.Count > 0)
+                GameObject card = deck[0];
+                deck.RemoveAt(0);
+                player.hand.Add(card);
+
+                Vector3 offset;
+
+                // Vertically spaced for players 2 and 4
+                if (i == 1 || i == 3)
                 {
-                    GameObject card = deck[0];
-                    deck.RemoveAt(0);
-                    players[i].GetComponent<Player_Base>().hand.Add(card);
-                    card.SetActive(false); // Hide the card in the player's hand
+                    offset = new Vector3(0, -j * 1.2f, 0); // stack down
                 }
                 else
                 {
-                    Debug.LogWarning("Not enough cards in the deck to deal.");
-                    break;
+                    offset = new Vector3(j * 1.2f, 0, 0); // spread right
                 }
+
+                card.GetComponent<RectTransform>().position = anchor + offset;
+                card.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("Not enough cards in the deck to deal.");
+                break;
             }
         }
-        Debug.Log("Cards dealt to players.");
-    } // deal()
+    }
+
+    Debug.Log("Cards dealt to players.");
+
+    
+}
+
 }
 
