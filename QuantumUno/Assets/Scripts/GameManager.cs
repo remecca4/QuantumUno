@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -110,20 +112,29 @@ public class GameManager : MonoBehaviour
                 GameObject red = Instantiate(norm_card_red,deck_pos);
                 red.SetActive(true);
                 red.GetComponent<Normal_Card>().number[0] = num;
+                red.GetComponent<Normal_Card>().card_text = red.GetComponentInChildren<TextMeshProUGUI>();
+                red.GetComponent<Normal_Card>().card_text.text = num.ToString();
                 red.GetComponent<Normal_Card>().ShowBack();
+                
 
                 GameObject blue = Instantiate(norm_card_blue, deck_pos);
                 blue.GetComponent<Normal_Card>().number[0] = num;
+                blue.GetComponent<Normal_Card>().card_text = red.GetComponentInChildren<TextMeshProUGUI>();
+                blue.GetComponent<Normal_Card>().card_text.text = num.ToString();
                 blue.GetComponent<Normal_Card>().ShowBack();
                 blue.SetActive(true);
 
                 GameObject yellow = Instantiate(norm_card_yellow, deck_pos);
                 yellow.GetComponent<Normal_Card>().number[0] = num;
+                yellow.GetComponent<Normal_Card>().card_text = red.GetComponentInChildren<TextMeshProUGUI>();
+                yellow.GetComponent<Normal_Card>().card_text.text = num.ToString();
                 yellow.GetComponent<Normal_Card>().ShowBack();
                 yellow.SetActive(true);
 
                 GameObject green = Instantiate(norm_card_green, deck_pos);
                 green.GetComponent<Normal_Card>().number[0] = num;
+                green.GetComponent<Normal_Card>().card_text = red.GetComponentInChildren<TextMeshProUGUI>();
+                green.GetComponent<Normal_Card>().card_text.text = num.ToString();
                 green.GetComponent<Normal_Card>().ShowBack();
                 green.SetActive(true);
 

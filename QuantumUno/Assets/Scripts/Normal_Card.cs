@@ -9,6 +9,6 @@ public class Normal_Card : Card
         if (turnOrder > 1 || turnOrder < -1)
             turnOrder /= 2;
     }
-
+    
 }
 

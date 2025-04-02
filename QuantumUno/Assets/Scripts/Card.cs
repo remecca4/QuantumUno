@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
+
+
 
 public class Card : MonoBehaviour
 
@@ -11,10 +15,12 @@ public class Card : MonoBehaviour
     public List<int> number;
     public Sprite frontSprite;
     public Sprite backSprite;
+    public TextMeshProUGUI card_text;
     private Image cardImage;    // The UI Image component
     void Awake()
     {
         cardImage = GetComponent<Image>();
+       
     }
 
     public void ShowFront()
