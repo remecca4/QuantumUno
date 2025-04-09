@@ -9,52 +9,68 @@ public class Human_Player : Player_Base
 
     public override IEnumerator TakeTurn()
     {
-        Debug.Log("Human player's turn. Waiting for input...");
-        bool turnOver = false;
+    Debug.Log("Human player's turn. Waiting for input...");
+    bool turnOver = false;
 
-        // Enable input for player actions
-        EnablePlayerInput(true);
-        for(int i=0;i<hand.Count;i++)
+    // Show cards face-up
+    for (int i = 0; i < hand.Count; i++)
+    {
+        hand[i].GetComponent<Card>().ShowFront();
+    }
+
+    // Check if there's any valid card to play
+    GameObject topCard = GameManager.Instance.discard_pile[GameManager.Instance.discard_pile.Count - 1];
+    Card topCardComponent = topCard.GetComponent<Card>();
+
+    bool hasPlayableCard = false;
+    foreach (GameObject cardObj in hand)
+    {
+        Card card = cardObj.GetComponent<Card>();
+        if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]))
         {
-            hand[i].GetComponent<Card>().ShowFront();
+            hasPlayableCard = true;
+            break;
         }
-        while (!turnOver)
+    }
+
+    if (!hasPlayableCard)
+    {
+        Debug.Log("No valid cards in hand. Drawing a card...");
+        DrawCard(GameManager.Instance.deck);
+        yield return new WaitForSeconds(0.5f);
+        yield break; // End turn after drawing
+    }
+
+    // Enable card clicking
+    EnablePlayerInput(true);
+
+    // Wait for a valid card to be selected
+    while (!turnOver)
+    {
+        if (selectedCard != null)
         {
-            if (selectedCard != null)
+            Card selected = selectedCard.GetComponent<Card>();
+
+            if (selected.color.Contains(topCardComponent.color[0]) || selected.number.Contains(topCardComponent.number[0]))
             {
-                Card card = selectedCard.GetComponent<Card>();
-                GameObject topCard = GameManager.Instance.discard_pile[GameManager.Instance.discard_pile.Count - 1];
-                Card topCardComponent = topCard.GetComponent<Card>();
-
-                // Check if the selected card is valid
-                if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]))
-                {
-                    PlayCard(selectedCard);
-                    selectedCard = null;
-                    turnOver = true;
-                    break;
-                }
-                else
-                {
-                    Debug.Log("Invalid card selection. Try again.");
-                    selectedCard = null;
-                }
+                PlayCard(selectedCard);
+                selectedCard = null;
+                turnOver = true;
+                break;
             }
-
-            yield return null;
+            else
+            {
+                Debug.Log("Invalid card selection. Try again.");
+                selectedCard = null;
+            }
         }
 
-        // If no valid card was played, draw automatically
-        if (!turnOver)
-        {
-            DrawCard(GameManager.Instance.deck);
-            turnOver = true;
-        }
+        yield return null;
+    }
 
-        // Disable player input after turn
-        EnablePlayerInput(false);
-
-        Debug.Log("Human player's turn is over.");
+    // Disable input after turn
+    EnablePlayerInput(false);
+    Debug.Log("Human player's turn is over.");
     }
 
     private void EnablePlayerInput(bool enable)
