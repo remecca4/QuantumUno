@@ -21,16 +21,17 @@ public class Y_Gate_Card : Card
             switch (currentColor)
             {
                 case "red":
-                    cardComponent.color[0] = "blue"; //|0> to |1>
+                    color[0] = "blue"; //|0> to |1>
                     break;
                 case "blue":
-                    cardComponent.color[0] = "yellow"; // |1> to -|0>
+                    color[0] = "yellow"; // |1> to -|0>
                     break;
                 case "yellow":
-                    cardComponent.color[0] = "green"; // -|0> to -|1>
+                    color[0] = "green"; // -|0> to -|1>
                     break;
                 case "green":
-                    cardComponent.color[0] = "red"; // -|1> to |0>
+                    color[0] = "red"; // -|1> to |0>
+                    
                     break;
             }
 
@@ -39,25 +40,26 @@ public class Y_Gate_Card : Card
             switch (currentColor)
             {
                 case "red":
-                    cardComponent.color[1] = "blue"; //|0> to |1>
+                    color[1] = "blue"; //|0> to |1>
                     break;
                 case "blue":
-                    cardComponent.color[1] = "yellow"; // |1> to -|0>
+                    color[1] = "yellow"; // |1> to -|0>
                     break;
                 case "yellow":
-                    cardComponent.color[1] = "green"; // -|0> to -|1>
+                    color[1] = "green"; // -|0> to -|1>
                     break;
                 case "green":
-                    cardComponent.color[1] = "red"; // -|1> to |0>
+                    color[1] = "red"; // -|1> to |0>
                     break;
             }
 
-            Debug.Log($"Y Gate applied! Color changed from {currentColor} to {cardComponent.color[0]}");
+            Debug.Log($"Y Gate applied! Color changed from {currentColor} to {color[0]}");
 
         }
         else
         {
             Debug.LogWarning("Top card in discard pile has no valid color.");
         }
+        setColor();
     }
 }

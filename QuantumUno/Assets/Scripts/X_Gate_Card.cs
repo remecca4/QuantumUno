@@ -18,15 +18,17 @@ public class X_Gate_Card : Card
 
             
             if (topCardComponent.color[0] == "red") {
-                topCardComponent.color[0] = "blue";
+                color[0] = "blue";
+                
             }
             else if (topCardComponent.color[0] == "yellow") {
-                topCardComponent.color[0] = "green";
+                color[0] = "green";
+                
             }
             
         }
 
-
+        setColor();
         discard_pile.Add(this.gameObject);
     }
 }
