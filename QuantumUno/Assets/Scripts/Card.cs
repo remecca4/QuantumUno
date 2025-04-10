@@ -39,11 +39,21 @@ public class Card : MonoBehaviour
     public void ShowFront()
     {
         cardImage.sprite = frontSprite;
+
+        if (card_text != null)
+        {
+            card_text.gameObject.SetActive(true);  // Make text visible on front
+        }
     }
 
     public void ShowBack()
     {
         cardImage.sprite = backSprite;
+
+        if (card_text != null)
+        {
+            card_text.gameObject.SetActive(false);  // Hide text on back
+        }
     }
     public void setColor()
     {

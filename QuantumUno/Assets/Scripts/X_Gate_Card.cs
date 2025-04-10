@@ -29,6 +29,6 @@ public class X_Gate_Card : Card
         }
 
         setColor();
-        discard_pile.Add(this.gameObject);
+        // discard_pile.Add(this.gameObject);
     }
 }

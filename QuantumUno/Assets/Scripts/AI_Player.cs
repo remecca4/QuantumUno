@@ -42,6 +42,16 @@ public class AI_Player : Player_Base
         // Let the card handle its own logic (e.g., ReverseCard flips turn_order)
         card.Play(ref GameManager.Instance.deck, ref GameManager.Instance.discard_pile, 
                   ref GameManager.Instance.turn_order);
+
+        
+        foreach (GameObject discardCard in GameManager.Instance.discard_pile) {
+            discardCard.SetActive(false);
+        }
+
+        card.ShowFront();
+
+        // Move card to discard pile position
+        cardObject.GetComponent<RectTransform>().position = GameManager.Instance.discard_pos.transform.position;
         
         // Update GameManager's discard pile (centralized)
         GameManager.Instance.discard_pile.Add(cardObject);
@@ -60,6 +70,7 @@ public class AI_Player : Player_Base
             Card currentCard = drawnCard.GetComponent<Card>();
             deck.RemoveAt(0);
             hand.Add(drawnCard);
+            currentCard.ShowBack();
             Debug.Log("AI drew a card.");
         }
         else

@@ -119,21 +119,21 @@ public class GameManager : MonoBehaviour
 
                 GameObject blue = Instantiate(norm_card_blue, deck_pos);
                 blue.GetComponent<Normal_Card>().number[0] = num;
-                blue.GetComponent<Normal_Card>().card_text = red.GetComponentInChildren<TextMeshProUGUI>();
+                blue.GetComponent<Normal_Card>().card_text = blue.GetComponentInChildren<TextMeshProUGUI>();
                 blue.GetComponent<Normal_Card>().card_text.text = num.ToString();
                 blue.GetComponent<Normal_Card>().ShowBack();
                 blue.SetActive(true);
 
                 GameObject yellow = Instantiate(norm_card_yellow, deck_pos);
                 yellow.GetComponent<Normal_Card>().number[0] = num;
-                yellow.GetComponent<Normal_Card>().card_text = red.GetComponentInChildren<TextMeshProUGUI>();
+                yellow.GetComponent<Normal_Card>().card_text = yellow.GetComponentInChildren<TextMeshProUGUI>();
                 yellow.GetComponent<Normal_Card>().card_text.text = num.ToString();
                 yellow.GetComponent<Normal_Card>().ShowBack();
                 yellow.SetActive(true);
 
                 GameObject green = Instantiate(norm_card_green, deck_pos);
                 green.GetComponent<Normal_Card>().number[0] = num;
-                green.GetComponent<Normal_Card>().card_text = red.GetComponentInChildren<TextMeshProUGUI>();
+                green.GetComponent<Normal_Card>().card_text = green.GetComponentInChildren<TextMeshProUGUI>();
                 green.GetComponent<Normal_Card>().card_text.text = num.ToString();
                 green.GetComponent<Normal_Card>().ShowBack();
                 green.SetActive(true);

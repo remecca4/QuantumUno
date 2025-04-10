@@ -107,6 +107,13 @@ public class Human_Player : Player_Base
         card.Play(ref GameManager.Instance.deck, ref GameManager.Instance.discard_pile,
                   ref GameManager.Instance.turn_order);
 
+        foreach (GameObject discardCard in GameManager.Instance.discard_pile) {
+            discardCard.SetActive(false);
+        }
+
+        // Move card to discard pile position
+        cardObject.GetComponent<RectTransform>().position = GameManager.Instance.discard_pos.transform.position;
+
         // Update GameManager's discard pile (centralized)
         GameManager.Instance.discard_pile.Add(cardObject);
         cardObject.SetActive(true);
@@ -114,6 +121,7 @@ public class Human_Player : Player_Base
         // Remove from hand
         hand.Remove(cardObject);
         Debug.Log($"Human played a card: {card.color[0]} {card.number[0]}");
+        ReorganizeHand();
     }
 
     private void DrawCard(List<GameObject> deck)
@@ -123,12 +131,34 @@ public class Human_Player : Player_Base
             GameObject drawnCard = deck[0];
             deck.RemoveAt(0);
             hand.Add(drawnCard);
-            drawnCard.SetActive(false);  // Keep it hidden initially
+            
+            // Position the card in the player's hand
+            int cardIndex = hand.Count - 1;
+            Vector3 handAnchor = new Vector3(-3f, -6f, 0); // Player 1 (bottom) position
+            Vector3 offset = new Vector3(cardIndex * 1.2f, 0, 0); // spread right
+            drawnCard.GetComponent<RectTransform>().position = handAnchor + offset;
+            
+            // Make card visible and show its front face to the player
+            drawnCard.SetActive(true);
+            drawnCard.GetComponent<Card>().ShowFront();
+            
             Debug.Log("Human drew a card: " + drawnCard.name);
         }
         else
         {
             Debug.Log("No cards left in the deck.");
+        }
+        ReorganizeHand();
+    }
+
+    private void ReorganizeHand()
+    {
+        Vector3 handAnchor = new Vector3(-3f, -6f, 0); // Player 1 (bottom) position
+        
+        for (int i = 0; i < hand.Count; i++)
+        {
+            Vector3 offset = new Vector3(i * 1.2f, 0, 0); // spread right
+            hand[i].GetComponent<RectTransform>().position = handAnchor + offset;
         }
     }
 }
