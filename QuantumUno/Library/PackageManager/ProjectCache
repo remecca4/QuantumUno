@@ -1,25 +1,25 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
-    m_FilePath: C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno/Packages/manifest.json
+    m_FilePath: C:/Users/lucas/OneDrive/Documents/GitHub/QuantumUno/QuantumUno/Packages/manifest.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638761296164317797
+      ticks: 638761285931186682
     m_Hash: 820019355
   m_LockFileStatus:
-    m_FilePath: C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno/Packages/packages-lock.json
+    m_FilePath: C:/Users/lucas/OneDrive/Documents/GitHub/QuantumUno/QuantumUno/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638761296164327817
+      ticks: 638761286191946713
     m_Hash: 2419316610
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
-m_ProjectPath: C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno/Packages
+m_ProjectPath: C:/Users/lucas/OneDrive/Documents/GitHub/QuantumUno/QuantumUno/Packages
 m_EditorVersion: 6000.0.38f1 (82314a941f2d)
 m_ResolvedPackages:
 - packageId: com.unity.multiplayer.center@1.0.0
@@ -27,7 +27,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: C:\Users\Rachel\Documents\GitHub\QuantumUno\QuantumUno\Library\PackageCache\com.unity.multiplayer.center@f502d8ac613f
+  resolvedPath: C:\Users\lucas\OneDrive\Documents\GitHub\QuantumUno\QuantumUno\Library\PackageCache\com.unity.multiplayer.center@f502d8ac613f
   assetPath: Packages/com.unity.multiplayer.center
   name: com.unity.multiplayer.center
   displayName: Multiplayer Center
@@ -117,7 +117,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.0
   source: 2
-  resolvedPath: C:\Users\Rachel\Documents\GitHub\QuantumUno\QuantumUno\Library\PackageCache\com.unity.ugui@03407c6d8751
+  resolvedPath: C:\Users\lucas\OneDrive\Documents\GitHub\QuantumUno\QuantumUno\Library\PackageCache\com.unity.ugui@03407c6d8751
   assetPath: Packages/com.unity.ugui
   name: com.unity.ugui
   displayName: Unity UI

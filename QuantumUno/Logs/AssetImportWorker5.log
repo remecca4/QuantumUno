@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '6000.0/staging' branch; Version is '6000.0.38f1 (82314a941f2d) revision 8532298'; Using compiler version '193933523'; Build Type 'Release'
-OS: 'Windows 11  (10.0.26100) 64bit Professional' Language: 'en' Physical Memory: 65233 MB
+OS: 'Windows 11  (10.0.26100) 64bit Core' Language: 'en' Physical Memory: 32212 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
@@ -11,19 +11,19 @@ C:\Program Files\Unity\Hub\Editor\6000.0.38f1\Editor\Unity.exe
 -name
 AssetImportWorker5
 -projectPath
-C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno
+C:/Users/lucas/OneDrive/Documents/GitHub/QuantumUno/QuantumUno
 -logFile
 Logs/AssetImportWorker5.log
 -srvPort
-53318
+52348
 -job-worker-count
-9
+10
 -background-job-worker-count
 8
 -gc-helper-count
 1
-Successfully changed project path to: C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno
-C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno
+Successfully changed project path to: C:/Users/lucas/OneDrive/Documents/GitHub/QuantumUno/QuantumUno
+C:/Users/lucas/OneDrive/Documents/GitHub/QuantumUno/QuantumUno
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -59,15 +59,15 @@ C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [21984]  Target information:
+Player connection [21136]  Target information:
 
-Player connection [21984]  * "[IP] 172.23.16.1 [Port] 0 [Flags] 2 [Guid] 1559851186 [EditorId] 1559851186 [Version] 1048832 [Id] WindowsEditor(7,laptop-Rachel) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [21136]  * "[IP] 172.19.0.1 [Port] 0 [Flags] 2 [Guid] 1084823123 [EditorId] 1084823123 [Version] 1048832 [Id] WindowsEditor(7,lucas) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [21984]  * "[IP] 35.2.150.167 [Port] 0 [Flags] 2 [Guid] 1559851186 [EditorId] 1559851186 [Version] 1048832 [Id] WindowsEditor(7,laptop-Rachel) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [21136]  * "[IP] 35.2.165.241 [Port] 0 [Flags] 2 [Guid] 1084823123 [EditorId] 1084823123 [Version] 1048832 [Id] WindowsEditor(7,lucas) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [21984] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [21984] Host joined alternative multi-casting on [225.0.0.222:34997]...
-JobSystem: Creating JobQueue using job-worker-count value 9
+Player connection [21136] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [21136] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 10
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -82,111 +82,110 @@ Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.38f1 (82314a941f2d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.38f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/Rachel/Documents/GitHub/QuantumUno/QuantumUno/Assets
+[Subsystems] Discovering subsystems at path C:/Users/lucas/OneDrive/Documents/GitHub/QuantumUno/QuantumUno/Assets
 GfxDevice: creating device client; kGfxThreadingModeNonThreaded
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA T600 Laptop GPU (ID=0x1fb6)
-    Vendor:   NVIDIA
-    VRAM:     3952 MB
-    Driver:   31.0.15.3878
+    Renderer: Intel(R) Arc(TM) Graphics (ID=0x7d55)
+    Vendor:   Intel
+    VRAM:     18361 MB
+    Driver:   32.0.101.6127
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.38f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.38f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.38f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56792
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56172
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.38f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.38f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.38f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Registered in 0.006652 seconds.
-- Loaded All Assemblies, in  0.443 seconds
-Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 491 ms
+Registered in 0.003485 seconds.
+- Loaded All Assemblies, in  0.328 seconds
 Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.313 seconds
-Domain Reload Profiling: 1754ms
-	BeginReloadAssembly (140ms)
+- Finished resetting the current domain, in  0.303 seconds
+Domain Reload Profiling: 629ms
+	BeginReloadAssembly (117ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (38ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (60ms)
-	LoadAllAssembliesAndSetupDomain (190ms)
-		LoadAssemblies (136ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (43ms)
+	LoadAllAssembliesAndSetupDomain (128ms)
+		LoadAssemblies (115ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (187ms)
-			TypeCache.Refresh (184ms)
-				TypeCache.ScanAssembly (167ms)
+		AnalyzeDomain (125ms)
+			TypeCache.Refresh (123ms)
+				TypeCache.ScanAssembly (112ms)
 			BuildScriptInfoCaches (0ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (1314ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (304ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1250ms)
+		SetupLoadedEditorAssemblies (274ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (655ms)
-			SetLoadedEditorAssemblies (7ms)
-			BeforeProcessingInitializeOnLoad (112ms)
-			ProcessInitializeOnLoadAttributes (313ms)
-			ProcessInitializeOnLoadMethodAttributes (162ms)
+			InitializePlatformSupportModulesInManaged (23ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (52ms)
+			ProcessInitializeOnLoadAttributes (155ms)
+			ProcessInitializeOnLoadMethodAttributes (41ms)
 			AfterProcessingInitializeOnLoad (0ms)
-			EditorAssembliesLoaded (1ms)
+			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (0ms)
 ========================================================================
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.633 seconds
+- Loaded All Assemblies, in  0.219 seconds
 Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
-Native extension for Android target not found
 Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.837 seconds
-Domain Reload Profiling: 1465ms
-	BeginReloadAssembly (410ms)
+- Finished resetting the current domain, in  0.375 seconds
+Domain Reload Profiling: 593ms
+	BeginReloadAssembly (146ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (13ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (60ms)
-	RebuildCommonClasses (82ms)
-	RebuildNativeTypeToScriptingClass (25ms)
-	initialDomainReloadingComplete (43ms)
-	LoadAllAssembliesAndSetupDomain (67ms)
-		LoadAssemblies (267ms)
+		CreateAndSetChildDomain (27ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (16ms)
+	LoadAllAssembliesAndSetupDomain (19ms)
+		LoadAssemblies (89ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (55ms)
-			TypeCache.Refresh (40ms)
-				TypeCache.ScanAssembly (27ms)
-			BuildScriptInfoCaches (6ms)
-			ResolveRequiredComponents (4ms)
-	FinalizeReload (839ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (5ms)
+			BuildScriptInfoCaches (2ms)
+			ResolveRequiredComponents (2ms)
+	FinalizeReload (376ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (551ms)
+		SetupLoadedEditorAssemblies (269ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (30ms)
-			SetLoadedEditorAssemblies (8ms)
-			BeforeProcessingInitializeOnLoad (127ms)
-			ProcessInitializeOnLoadAttributes (290ms)
-			ProcessInitializeOnLoadMethodAttributes (83ms)
-			AfterProcessingInitializeOnLoad (13ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (66ms)
+			ProcessInitializeOnLoadAttributes (171ms)
+			ProcessInitializeOnLoadMethodAttributes (21ms)
+			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (16ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
 Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 22 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 418 unused Assets / (69.0 KB). Loaded Objects now: 931.
-Memory consumption went from 61.3 MB to 61.3 MB.
-Total: 8.733200 ms (FindLiveObjects: 0.119300 ms CreateObjectMapping: 0.044400 ms MarkObjects: 8.231700 ms  DeleteObjects: 0.335200 ms)
+Unloading 420 unused Assets / (59.5 KB). Loaded Objects now: 931.
+Memory consumption went from 61.8 MB to 61.7 MB.
+Total: 3.324400 ms (FindLiveObjects: 0.056600 ms CreateObjectMapping: 0.013000 ms MarkObjects: 3.126000 ms  DeleteObjects: 0.127700 ms)
 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server
