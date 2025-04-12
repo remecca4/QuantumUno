@@ -67,11 +67,17 @@ public class GameManager : MonoBehaviour
         // Deal after shuffle
         deal();
         Debug.Log("Dealing cards...");
-        
-        GameObject firstCard = deck[deck.Count - 1];
-        firstCard.GetComponent<RectTransform>().position = discard_pos.transform.position;
-        firstCard.GetComponent<Card>().ShowFront();
-        discard_pile.Add(firstCard);
+
+        while (true)
+        {
+            GameObject firstCard = deck[deck.Count - 1];
+            firstCard.GetComponent<RectTransform>().position = discard_pos.transform.position;
+            firstCard.GetComponent<Card>().ShowFront();
+            discard_pile.Add(firstCard);
+            deck.RemoveAt(deck.Count - 1);
+            if (firstCard.GetComponent<Card>().card_type != "gate")
+                break;
+        }
         StartCoroutine(GameLoop());
     } // SetupGame()
 
@@ -80,6 +86,8 @@ public class GameManager : MonoBehaviour
         bool gameOver = false;
         while (!gameOver)
         {
+            Debug.Log(currentPlayerIndex);
+            Debug.Log(currentPlayerIndex%players.Count);
             Player_Base currentPlayer = players[currentPlayerIndex%players.Count].GetComponent<Player_Base>();
             Debug.Log($"Player {currentPlayerIndex % players.Count + 1}'s turn");
             
@@ -95,6 +103,12 @@ public class GameManager : MonoBehaviour
             } // if
 
             currentPlayerIndex += turn_order;
+            
+            if (currentPlayerIndex < 0)
+            {
+                currentPlayerIndex = players.Count-1;
+            }
+            currentPlayerIndex %= players.Count;
 
             yield return new WaitForSeconds(0.5f); // Small delay between turns
         } // while

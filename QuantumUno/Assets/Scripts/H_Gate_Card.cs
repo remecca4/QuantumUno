@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class H_Gate_Card : Card
-{
+{ 
+    void Start()
+    {
+        card_type = "gate";
+    }
     public override void Play(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
     {
         /* 

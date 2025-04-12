@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class X_Gate_Card : Card
 {
+    void Start()
+    {
+        card_type = "gate";
+    }
     public override void Play(ref List<GameObject> deck, 
                               ref List<GameObject> discard_pile, 
                               ref int turnOrder)
@@ -25,10 +29,18 @@ public class X_Gate_Card : Card
                 color[0] = "green";
                 
             }
-            
+            else
+            {
+                color[0] = topCardComponent.color[0];
+            }
+            color[1] = topCardComponent.color[1];
+            number[0] = topCardComponent.number[0];
+            number[1] = topCardComponent.number[1];
+            setNumText();
+            setColor(topCardComponent.card_type);
+            ShowFront();
         }
-
-        setColor();
+       
         // discard_pile.Add(this.gameObject);
     }
 }

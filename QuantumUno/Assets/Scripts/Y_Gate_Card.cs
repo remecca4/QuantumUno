@@ -7,6 +7,10 @@ using UnityEngine;
 // following Y gate behavior in QM
 public class Y_Gate_Card : Card
 {
+    void Start()
+    {
+        card_type = "gate";
+    }
     public override void Play(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
     {
         if (turnOrder > 1 || turnOrder < -1) turnOrder /= 2;
@@ -53,13 +57,17 @@ public class Y_Gate_Card : Card
                     break;
             }
 
-            Debug.Log($"Y Gate applied! Color changed from {currentColor} to {color[0]}");
+            
 
         }
         else
         {
             Debug.LogWarning("Top card in discard pile has no valid color.");
         }
-        setColor();
+        number[0] = cardComponent.number[0];
+        number[1] = cardComponent.number[1];
+        setNumText();
+        setColor(cardComponent.card_type);
+        ShowFront();
     }
 }

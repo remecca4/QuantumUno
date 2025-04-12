@@ -17,8 +17,8 @@ public class Card : MonoBehaviour
     public Sprite backSprite;
     public TextMeshProUGUI card_text;
     private Image cardImage;    // The UI Image component
-
-    //all different color images
+    public string card_type = "normal";
+    //all different normal card color images
     public Sprite redCard;
     public Sprite blueCard;
     public Sprite greenCard;
@@ -29,20 +29,44 @@ public class Card : MonoBehaviour
     public Sprite blue_yellowCard;
     public Sprite blue_greenCard;
     public Sprite green_yellowCard;
+    //all different skip card color images
+    public Sprite redCard_skip;
+    public Sprite blueCard_skip;
+    public Sprite greenCard_skip;
+    public Sprite yellowCard_skip;
+    public Sprite red_yellowCard_skip;
+    public Sprite red_blueCard_skip;
+    public Sprite red_greenCard_skip;
+    public Sprite blue_yellowCard_skip;
+    public Sprite blue_greenCard_skip;
+    public Sprite green_yellowCard_skip;
+    //all different reverse card color images
+    public Sprite redCard_rev;
+    public Sprite blueCard_rev;
+    public Sprite greenCard_rev;
+    public Sprite yellowCard_rev;
+    public Sprite red_yellowCard_rev;
+    public Sprite red_blueCard_rev;
+    public Sprite red_greenCard_rev;
+    public Sprite blue_yellowCard_rev;
+    public Sprite blue_greenCard_rev;
+    public Sprite green_yellowCard_rev;
 
     void Awake()
     {
         cardImage = GetComponent<Image>();
-       
+        card_text = GetComponentInChildren<TextMeshProUGUI>();
+
+
     }
 
     public void ShowFront()
     {
         cardImage.sprite = frontSprite;
 
-        if (card_text != null)
+        if (card_text != null && number[0]<10)
         {
-            card_text.gameObject.SetActive(true);  // Make text visible on front
+            card_text.enabled = true; ; 
         }
     }
 
@@ -52,33 +76,86 @@ public class Card : MonoBehaviour
 
         if (card_text != null)
         {
-            card_text.gameObject.SetActive(false);  // Hide text on back
+            card_text.enabled=false;  
         }
     }
-    public void setColor()
+    public void setColor(string ctype)
     {
-        if (color[0] == "red" && color[1] == "")
-            frontSprite = redCard;
-        else if (color[0] == "blue" && color[1] == "")
-            frontSprite = blueCard;
-        else if (color[0] == "green" && color[1] == "")
-            frontSprite = greenCard;
-        else if (color[0] == "yellow" && color[1] == "")
-            frontSprite = yellowCard;
-        else if ((color[0] == "red" && color[1] == "yellow") || (color[0] == "yellow" && color[1] == "red"))
-            frontSprite = red_yellowCard;
-        else if ((color[0] == "red" && color[1] == "blue") || (color[0] == "blue" && color[1] == "red"))
-            frontSprite = red_blueCard;
-        else if ((color[0] == "red" && color[1] == "green") || (color[0] == "green" && color[1] == "red"))
-            frontSprite = red_greenCard;
-        else if ((color[0] == "blue" && color[1] == "yellow") || (color[0] == "yellow" && color[1] == "blue"))
-            frontSprite = blue_yellowCard;
-        else if ((color[0] == "blue" && color[1] == "green") || (color[0] == "green" && color[1] == "blue"))
-            frontSprite = blue_greenCard;
-        else if ((color[0] == "yellow" && color[1] == "green") || (color[0] == "green" && color[1] == "yellow"))
-            frontSprite = green_yellowCard;
-
-
+        if (ctype == "normal")
+        {
+            if (color[0] == "red" && color[1] == "")
+                frontSprite = redCard;
+            else if (color[0] == "blue" && color[1] == "")
+                frontSprite = blueCard;
+            else if (color[0] == "green" && color[1] == "")
+                frontSprite = greenCard;
+            else if (color[0] == "yellow" && color[1] == "")
+                frontSprite = yellowCard;
+            else if ((color[0] == "red" && color[1] == "yellow") || (color[0] == "yellow" && color[1] == "red"))
+                frontSprite = red_yellowCard;
+            else if ((color[0] == "red" && color[1] == "blue") || (color[0] == "blue" && color[1] == "red"))
+                frontSprite = red_blueCard;
+            else if ((color[0] == "red" && color[1] == "green") || (color[0] == "green" && color[1] == "red"))
+                frontSprite = red_greenCard;
+            else if ((color[0] == "blue" && color[1] == "yellow") || (color[0] == "yellow" && color[1] == "blue"))
+                frontSprite = blue_yellowCard;
+            else if ((color[0] == "blue" && color[1] == "green") || (color[0] == "green" && color[1] == "blue"))
+                frontSprite = blue_greenCard;
+            else if ((color[0] == "yellow" && color[1] == "green") || (color[0] == "green" && color[1] == "yellow"))
+                frontSprite = green_yellowCard;
+        }
+        else if (ctype == "skip")
+        {
+            if (color[0] == "red" && color[1] == "")
+                frontSprite = redCard_skip;
+            else if (color[0] == "blue" && color[1] == "")
+                frontSprite = blueCard_skip;
+            else if (color[0] == "green" && color[1] == "")
+                frontSprite = greenCard_skip;
+            else if (color[0] == "yellow" && color[1] == "")
+                frontSprite = yellowCard_skip;
+            else if ((color[0] == "red" && color[1] == "yellow") || (color[0] == "yellow" && color[1] == "red"))
+                frontSprite = red_yellowCard_skip;
+            else if ((color[0] == "red" && color[1] == "blue") || (color[0] == "blue" && color[1] == "red"))
+                frontSprite = red_blueCard_skip;
+            else if ((color[0] == "red" && color[1] == "green") || (color[0] == "green" && color[1] == "red"))
+                frontSprite = red_greenCard_skip;
+            else if ((color[0] == "blue" && color[1] == "yellow") || (color[0] == "yellow" && color[1] == "blue"))
+                frontSprite = blue_yellowCard_skip;
+            else if ((color[0] == "blue" && color[1] == "green") || (color[0] == "green" && color[1] == "blue"))
+                frontSprite = blue_greenCard_skip;
+            else if ((color[0] == "yellow" && color[1] == "green") || (color[0] == "green" && color[1] == "yellow"))
+                frontSprite = green_yellowCard_skip;
+        }
+        else if (ctype == "rev")
+        {
+            if (color[0] == "red" && color[1] == "")
+                frontSprite = redCard_rev;
+            else if (color[0] == "blue" && color[1] == "")
+                frontSprite = blueCard_rev;
+            else if (color[0] == "green" && color[1] == "")
+                frontSprite = greenCard_rev;
+            else if (color[0] == "yellow" && color[1] == "")
+                frontSprite = yellowCard_rev;
+            else if ((color[0] == "red" && color[1] == "yellow") || (color[0] == "yellow" && color[1] == "red"))
+                frontSprite = red_yellowCard_rev;
+            else if ((color[0] == "red" && color[1] == "blue") || (color[0] == "blue" && color[1] == "red"))
+                frontSprite = red_blueCard_rev;
+            else if ((color[0] == "red" && color[1] == "green") || (color[0] == "green" && color[1] == "red"))
+                frontSprite = red_greenCard_rev;
+            else if ((color[0] == "blue" && color[1] == "yellow") || (color[0] == "yellow" && color[1] == "blue"))
+                frontSprite = blue_yellowCard_rev;
+            else if ((color[0] == "blue" && color[1] == "green") || (color[0] == "green" && color[1] == "blue"))
+                frontSprite = blue_greenCard_rev;
+            else if ((color[0] == "yellow" && color[1] == "green") || (color[0] == "green" && color[1] == "yellow"))
+                frontSprite = green_yellowCard_rev;
+        }
+        Debug.Log("color changed");
+    }
+    public void setNumText()
+    {
+        card_text.text= number[0].ToString();
+        Debug.Log("number changed to " + number[0]);
     }
     public virtual void Play(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
     {

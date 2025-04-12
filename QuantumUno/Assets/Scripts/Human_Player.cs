@@ -26,8 +26,8 @@ public class Human_Player : Player_Base
     foreach (GameObject cardObj in hand)
     {
         Card card = cardObj.GetComponent<Card>();
-        if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]))
-        {
+        if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]) || card.card_type == "gate" || topCardComponent.card_type == "gate")
+            {
             hasPlayableCard = true;
             break;
         }
@@ -51,8 +51,8 @@ public class Human_Player : Player_Base
         {
             Card selected = selectedCard.GetComponent<Card>();
 
-            if (selected.color.Contains(topCardComponent.color[0]) || selected.number.Contains(topCardComponent.number[0]))
-            {
+            if (selected.color.Contains(topCardComponent.color[0]) || selected.number.Contains(topCardComponent.number[0]) || selected.card_type=="gate" || topCardComponent.card_type == "gate")
+                {
                 PlayCard(selectedCard);
                 selectedCard = null;
                 turnOver = true;
