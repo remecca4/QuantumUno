@@ -26,7 +26,16 @@ public class Human_Player : Player_Base
     foreach (GameObject cardObj in hand)
     {
         Card card = cardObj.GetComponent<Card>();
-        if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]) || card.card_type == "gate" || topCardComponent.card_type == "gate")
+        if (topCardComponent.card_type == "skip" || topCardComponent.card_type == "rev")
+            {
+                if (card.color[0] == topCardComponent.color[0] || card.color[1] == topCardComponent.color[0] ||
+               (topCardComponent.color[1] != "" && (card.color[0] == topCardComponent.color[1] || card.color[1] == topCardComponent.color[1])))
+               {
+                hasPlayableCard = true;
+                break;
+               }
+            }
+            else if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]) || card.card_type == "gate" || topCardComponent.card_type == "gate")
             {
             hasPlayableCard = true;
             break;
@@ -50,8 +59,18 @@ public class Human_Player : Player_Base
         if (selectedCard != null)
         {
             Card selected = selectedCard.GetComponent<Card>();
-
-            if (selected.color.Contains(topCardComponent.color[0]) || selected.number.Contains(topCardComponent.number[0]) || selected.card_type=="gate" || topCardComponent.card_type == "gate")
+            if (topCardComponent.card_type == "skip" || topCardComponent.card_type == "rev")
+            {
+                if (selected.color[0] == topCardComponent.color[0] || selected.color[1] == topCardComponent.color[0] ||
+               (topCardComponent.color[1] != "" && (selected.color[0] == topCardComponent.color[1] || selected.color[1] == topCardComponent.color[1])))
+               {
+                PlayCard(selectedCard);
+                selectedCard = null;
+                turnOver = true;
+                break;
+               }
+            }
+            else if (selected.color.Contains(topCardComponent.color[0]) || selected.number.Contains(topCardComponent.number[0]) || selected.card_type=="gate" || topCardComponent.card_type == "gate")
                 {
                 PlayCard(selectedCard);
                 selectedCard = null;
@@ -166,4 +185,27 @@ public class Human_Player : Player_Base
             hand[i].GetComponent<RectTransform>().position = pos;
         }
     }
+    private bool IsPlayable(Card top, Card candidate)
+    {
+        // Gate wildcard rules override everything
+        if (candidate.card_type == "gate" || top.card_type == "gate")
+            return true;
+
+        // If top card is a special card like skip/rev
+        if (top.card_type == "skip" || top.card_type == "rev")
+        {
+            // Only same type AND same color allowed
+            return candidate.card_type == top.card_type &&
+                (candidate.color[0] == top.color[0] || candidate.color[1] == top.color[0] ||
+                    (top.color[1] != "" && (candidate.color[0] == top.color[1] || candidate.color[1] == top.color[1])));
+        }
+
+        // If the card is normal (e.g. number 3 green), allow match by number or color
+        return candidate.number[0] == top.number[0] ||
+            candidate.color[0] == top.color[0] ||
+            candidate.color[1] == top.color[0] ||
+            candidate.color[0] == top.color[1] ||
+            candidate.color[1] == top.color[1];
+    }
+
 }
