@@ -26,7 +26,8 @@ public class Human_Player : Player_Base
     foreach (GameObject cardObj in hand)
     {
         Card card = cardObj.GetComponent<Card>();
-        if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]) || card.card_type == "gate" || topCardComponent.card_type == "gate")
+        if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]) || card.card_type == "gate" || topCardComponent.card_type == "gate" || topCardComponent.card_type == "rev" ||
+    topCardComponent.card_type == "skip")
             {
             hasPlayableCard = true;
             break;
