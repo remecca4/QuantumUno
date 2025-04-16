@@ -41,7 +41,8 @@ public class Z_Gate_Card : Card
         number[0] = topCardComponent.number[0];
         number[1] = topCardComponent.number[1];
         setNumText();
-        setColor(topCardComponent.card_type);
+        card_type = topCardComponent.card_type;
+        setColor();
         ShowFront();
     }
 

@@ -67,7 +67,8 @@ public class Y_Gate_Card : Card
         number[0] = cardComponent.number[0];
         number[1] = cardComponent.number[1];
         setNumText();
-        setColor(cardComponent.card_type);
+        card_type = cardComponent.card_type;
+        setColor();
         ShowFront();
     }
 }

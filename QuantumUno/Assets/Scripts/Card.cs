@@ -56,6 +56,7 @@ public class Card : MonoBehaviour
     {
         cardImage = GetComponent<Image>();
         card_text = GetComponentInChildren<TextMeshProUGUI>();
+        color[1] = "";
 
 
     }
@@ -79,9 +80,12 @@ public class Card : MonoBehaviour
             card_text.enabled=false;  
         }
     }
-    public void setColor(string ctype)
+    public void setColor()
     {
-        if (ctype == "normal")
+        print(card_type);
+        if (card_type == "gate")
+            print("ERROR");
+        if (card_type == "normal")
         {
             if (color[0] == "red" && color[1] == "")
                 frontSprite = redCard;
@@ -104,7 +108,7 @@ public class Card : MonoBehaviour
             else if ((color[0] == "yellow" && color[1] == "green") || (color[0] == "green" && color[1] == "yellow"))
                 frontSprite = green_yellowCard;
         }
-        else if (ctype == "skip")
+        else if (card_type == "skip")
         {
             if (color[0] == "red" && color[1] == "")
                 frontSprite = redCard_skip;
@@ -127,7 +131,7 @@ public class Card : MonoBehaviour
             else if ((color[0] == "yellow" && color[1] == "green") || (color[0] == "green" && color[1] == "yellow"))
                 frontSprite = green_yellowCard_skip;
         }
-        else if (ctype == "rev")
+        else if (card_type == "rev")
         {
             if (color[0] == "red" && color[1] == "")
                 frontSprite = redCard_rev;

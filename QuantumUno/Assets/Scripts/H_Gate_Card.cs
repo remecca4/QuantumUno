@@ -22,53 +22,64 @@ public class H_Gate_Card : Card
         Card cardComponent = discard_top.GetComponent<Card>();
 
         // H|0> = |0> + |1>
-        if (cardComponent.color[0] == "red" && cardComponent.color[1] == " ")
+        if (cardComponent.color[0] == "red" && cardComponent.color[1] == "")
         {
-            cardComponent.color[0] = "red";
-            cardComponent.color[1] = "blue";
+            color[0] = "red";
+            color[1] = "blue";
         }
         // H|1> = |0> - |1>
-        else if (cardComponent.color[0] == "blue" && cardComponent.color[1] == " ")
+        else if (cardComponent.color[0] == "blue" && cardComponent.color[1] == "")
         {
-            cardComponent.color[0] = "red";
-            cardComponent.color[1] = "green";
+            color[0] = "red";
+            color[1] = "green";
         }
         // H -|0> = -|0> - |1>
-        else if (cardComponent.color[0] == "yellow" && cardComponent.color[1] == " ")
+        else if (cardComponent.color[0] == "yellow" && cardComponent.color[1] == "")
         {
-            cardComponent.color[0] = "yellow";
-            cardComponent.color[1] = "green";
+            color[0] = "yellow";
+            color[1] = "green";
         }
         // H -|1> = -|0> + |1>
-        else if (cardComponent.color[0] == "green" && cardComponent.color[1] == " ")
+        else if (cardComponent.color[0] == "green" && cardComponent.color[1] == "")
         {
-            cardComponent.color[0] = "yellow";
-            cardComponent.color[1] = "blue";
+            color[0] = "yellow";
+            color[1] = "blue";
         }
         // H(|0> + |1>) = |0>
         else if (cardComponent.color[0] == "red" && cardComponent.color[1] == "blue")
         {
-            cardComponent.color[0] = "red";
-            cardComponent.color[1] = " ";
+            color[0] = "red";
+            color[1] = "";
         }
         // H(-|0> - |1>) = -|0>
         else if (cardComponent.color[0] == "yellow" && cardComponent.color[1] == "green")
         {
-            cardComponent.color[0] = "yellow";
-            cardComponent.color[1] = " ";
+            color[0] = "yellow";
+            color[1] = "";
         }
         // H(|0> - |1>) = |1>
         else if (cardComponent.color[0] == "red" && cardComponent.color[1] == "green")
         {
-            cardComponent.color[0] = "blue";
-            cardComponent.color[1] = " ";
+            color[0] = "blue";
+            color[1] = "";
         }
         // H(-|0> + |1>) = -|1>
         else if (cardComponent.color[0] == "yellow" && cardComponent.color[1] == "blue")
         {
-            cardComponent.color[0] = "green";
-            cardComponent.color[1] = " ";
+            color[0] = "green";
+            color[1] = "";
         }
+        else
+        {
+            color[0] = cardComponent.color[0];
+            color[1] = cardComponent.color[1];
+        }
+        number[0] = cardComponent.number[0];
+        number[1] = cardComponent.number[1];
+        setNumText();
+        card_type = cardComponent.card_type;
+        setColor();
+        ShowFront();
     }
 
 

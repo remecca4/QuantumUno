@@ -102,12 +102,12 @@ MonoBehaviour:
   blueCard: {fileID: 21300000, guid: 2a0fa500019a9804d9b7fcfc761d81f2, type: 3}
   greenCard: {fileID: 21300000, guid: 5388941c3cc20f742b19005a83b3fc64, type: 3}
   yellowCard: {fileID: 21300000, guid: 4fd2a8142751fa049ba6682258ba89bc, type: 3}
-  red_yellowCard: {fileID: 0}
-  red_blueCard: {fileID: 0}
-  red_greenCard: {fileID: 0}
-  blue_yellowCard: {fileID: 0}
-  blue_greenCard: {fileID: 0}
-  green_yellowCard: {fileID: 0}
+  red_yellowCard: {fileID: 502401592504023305, guid: 15e2b9fe45d4b5a42bcea36806a5f27a, type: 3}
+  red_blueCard: {fileID: -5197150795116069038, guid: 7876809606cd67d409adc924da00491c, type: 3}
+  red_greenCard: {fileID: -2194759173982035902, guid: 87429243c09e32e4292a866f563e49f3, type: 3}
+  blue_yellowCard: {fileID: 573439145566346167, guid: 61b10a513f2f1ca44b120d142b9d7863, type: 3}
+  blue_greenCard: {fileID: -4722531661580789052, guid: 78b237c65815af34e84a05015e6e20d1, type: 3}
+  green_yellowCard: {fileID: 3164414864216150980, guid: dace649c42991494c878e85bea183ed9, type: 3}
   redCard_skip: {fileID: 21300000, guid: 697f1172d01022643b96686b1ba5a9eb, type: 3}
   blueCard_skip: {fileID: 21300000, guid: 2ebdc2027f98d51448606576ba769a93, type: 3}
   greenCard_skip: {fileID: 21300000, guid: 1bc7002e5eb022447a3bf253bf151d76, type: 3}
