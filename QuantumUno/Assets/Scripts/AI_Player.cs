@@ -19,8 +19,7 @@ public class AI_Player : Player_Base
         {
             Card card = cardObject.GetComponent<Card>(); // Get the Card component
         
-            if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0])|| card.card_type == "gate" || topCardComponent.card_type == "gate" || topCardComponent.card_type == "rev" ||
-    topCardComponent.card_type == "skip")
+            if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0])|| card.card_type == "gate" || topCardComponent.card_type == "gate")
             {
                 PlayCard(cardObject); // Pass the GameObject, not the Card component
                 cardPlayed = true;
