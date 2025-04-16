@@ -216,59 +216,52 @@ public class GameManager : MonoBehaviour
 
     // distribute cards to each plaer at beginning of game
     // determine how many cards to deal based on the number of players
+
+
+    const float HUMAN_SPACING_FACTOR = 0.15f;
+    const float AI_SPACING_FACTOR    = -0.30f;
     void deal()
-{
-    int numberOfCardsPerPlayer = 7;
-
-    // define hardcoded anchor positions for each player
-    Vector3[] handAnchors = new Vector3[]
     {
-        new Vector3(-3f, -6f, 0),   // Player 1 (bottom)
-        new Vector3(-12f, 2f, 0),   // Player 2 (left)
-        new Vector3(-3f, 6f, 0),    // Player 3 (top)
-        new Vector3(12f, 2f, 0)     // Player 4 (right)
-    };
+        int numberOfCardsPerPlayer = 7;
 
-    for (int i = 0; i < players.Count; i++)
-    {
-        Player_Base player = players[i].GetComponent<Player_Base>();
-        Vector3 anchor = handAnchors[i];
+        Vector3[] handAnchors = new Vector3[] {
+            new Vector3(-6f,-6f,0),   // P1 (bottom) → spread right
+            new Vector3(-12f, 5f,0),  // P2 (left)   → stack down
+            new Vector3(-4f, 6f,0),   // P3 (top)    → spread right
+            new Vector3(12f, 5f,0)    // P4 (right)  → stack down
+        };
 
-        for (int j = 0; j < numberOfCardsPerPlayer; j++)
+        for (int p = 0; p < players.Count; ++p)
         {
-            if (deck.Count > 0)
+            Player_Base player = players[p].GetComponent<Player_Base>();
+            Vector3 anchor = handAnchors[p];
+            bool isHuman = (p == 0);               // bottom player
+            float hFactor = isHuman ? HUMAN_SPACING_FACTOR : AI_SPACING_FACTOR;
+
+            for (int j = 0; j < numberOfCardsPerPlayer && deck.Count > 0; ++j)
             {
-                GameObject card = deck[0];
+                GameObject cardGO = deck[0];
                 deck.RemoveAt(0);
-                player.hand.Add(card);
+                player.hand.Add(cardGO);
 
-                Vector3 offset;
+                RectTransform rt = cardGO.GetComponent<RectTransform>();
+                float cardW = rt.rect.width  * rt.lossyScale.x;
+                float cardH = rt.rect.height * rt.lossyScale.y;
 
-                // Vertically spaced for players 2 and 4
-                if (i == 1 || i == 3)
-                {
-                    offset = new Vector3(0, -j * 1.2f, 0); // stack down
-                }
-                else
-                {
-                    offset = new Vector3(j * 1.2f, 0, 0); // spread right
-                }
+                Vector3 offset =
+                    (p == 1 || p == 3)                         // vertical piles
+                        ? new Vector3(0, -j * cardH * (1f + hFactor), 0)
+                        : new Vector3(j * cardW * (1f + hFactor), 0, 0);
 
-                card.GetComponent<RectTransform>().position = anchor + offset;
-                card.SetActive(true);
-            }
-            else
-            {
-                Debug.LogWarning("Not enough cards in the deck to deal.");
-                break;
+                rt.position = anchor + offset;
+                cardGO.SetActive(true);
             }
         }
     }
 
-    Debug.Log("Cards dealt to players.");
 
-    
-}
+        
+    // }
 
 }
 

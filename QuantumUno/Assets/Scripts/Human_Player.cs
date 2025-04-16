@@ -26,8 +26,7 @@ public class Human_Player : Player_Base
     foreach (GameObject cardObj in hand)
     {
         Card card = cardObj.GetComponent<Card>();
-        if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]) || card.card_type == "gate" || topCardComponent.card_type == "gate" || topCardComponent.card_type == "rev" ||
-    topCardComponent.card_type == "skip")
+        if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]) || card.card_type == "gate" || topCardComponent.card_type == "gate")
             {
             hasPlayableCard = true;
             break;
@@ -125,41 +124,46 @@ public class Human_Player : Player_Base
         ReorganizeHand();
     }
 
+
     private void DrawCard(List<GameObject> deck)
     {
-        if (deck.Count > 0)
-        {
-            GameObject drawnCard = deck[0];
-            deck.RemoveAt(0);
-            hand.Add(drawnCard);
-            
-            // Position the card in the player's hand
-            int cardIndex = hand.Count - 1;
-            Vector3 handAnchor = new Vector3(-3f, -6f, 0); // Player 1 (bottom) position
-            Vector3 offset = new Vector3(cardIndex * 1.2f, 0, 0); // spread right
-            drawnCard.GetComponent<RectTransform>().position = handAnchor + offset;
-            
-            // Make card visible and show its front face to the player
-            drawnCard.SetActive(true);
-            drawnCard.GetComponent<Card>().ShowFront();
-            
-            Debug.Log("Human drew a card: " + drawnCard.name);
-        }
-        else
+        if (deck.Count == 0)
         {
             Debug.Log("No cards left in the deck.");
+            return;
         }
-        ReorganizeHand();
+
+        GameObject drawnCard = deck[0];
+        deck.RemoveAt(0);
+        hand.Add(drawnCard);
+
+        drawnCard.SetActive(true);
+        drawnCard.GetComponent<Card>().ShowFront();
+
+        Debug.Log("Human drew a card: " + drawnCard.name);
+
+        ReorganizeHand();          // ➊ reposition *after* adding
     }
 
-    private void ReorganizeHand()
+
+        private void ReorganizeHand()
     {
-        Vector3 handAnchor = new Vector3(-3f, -6f, 0); // Player 1 (bottom) position
-        
-        for (int i = 0; i < hand.Count; i++)
+        if (hand.Count == 0) return;
+
+        // same anchor you used in deal()
+        Vector3 handAnchor = new Vector3(-3f, -6f, 0);      // bottom centre
+
+        // width‑based gap (card width * (1 + spacingFactor))
+        RectTransform rt0 = hand[0].GetComponent<RectTransform>();
+        float cardW       = rt0.rect.width  * rt0.lossyScale.x;
+
+        const float spacingFactor = 0.15f;                  // ➋ keep in‑sync
+        float gapX = cardW * (1f + spacingFactor);
+
+        for (int i = 0; i < hand.Count; ++i)
         {
-            Vector3 offset = new Vector3(i * 1.2f, 0, 0); // spread right
-            hand[i].GetComponent<RectTransform>().position = handAnchor + offset;
+            Vector3 pos = handAnchor + new Vector3(i * gapX, 0, 0);
+            hand[i].GetComponent<RectTransform>().position = pos;
         }
     }
 }
