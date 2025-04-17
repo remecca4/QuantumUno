@@ -141,6 +141,11 @@ public class Human_Player : Player_Base
         // Remove from hand
         hand.Remove(cardObject);
         Debug.Log($"Human played a card: {card.color[0]} {card.number[0]}");
+        if (hand.Count == 0)
+        {
+            GameManager.Instance.EndRound(this);
+            return;
+        }
         ReorganizeHand();
     }
 

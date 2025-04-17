@@ -105,13 +105,13 @@ public class GameManager : MonoBehaviour
             //     SceneManager.LoadScene("End_Screen");
             //     yield break;    
             // }
-            if (currentPlayer.hand.Count == 0)
-            {
-                GameResult.humanWon  = currentPlayer.isHuman; 
-                GameResult.playScene = SceneManager.GetActiveScene().name;
-                SceneManager.LoadScene("End_Screen");
-                yield break;
-            }
+            // if (currentPlayer.hand.Count == 0)
+            // {
+            //     GameResult.humanWon  = currentPlayer.isHuman; 
+            //     GameResult.playScene = SceneManager.GetActiveScene().name;
+            //     SceneManager.LoadScene("End_Screen");
+            //     yield break;
+            // }
 
             currentPlayerIndex += turn_order;
             
@@ -268,6 +268,13 @@ public class GameManager : MonoBehaviour
                 cardGO.SetActive(true);
             }
         }
+    }
+
+        public void EndRound(Player_Base winner)
+    {
+        GameResult.humanWon  = winner.isHuman;
+        GameResult.playScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("End_Screen");
     }
 
 
