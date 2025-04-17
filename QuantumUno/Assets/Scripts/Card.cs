@@ -65,9 +65,9 @@ public class Card : MonoBehaviour
     {
         cardImage.sprite = frontSprite;
 
-        if (card_text != null && number[0]<10)
+        if (card_text != null && number[0] < 10)
         {
-            card_text.enabled = true; ; 
+            card_text.enabled = true; ;
         }
     }
 
@@ -77,12 +77,13 @@ public class Card : MonoBehaviour
 
         if (card_text != null)
         {
-            card_text.enabled=false;  
+            card_text.enabled = false;
         }
     }
     public void setColor()
     {
-        print(card_type);
+        if (color[1] == color[0])
+            color[1] = "";
         if (card_type == "gate")
             print("ERROR");
         if (card_type == "normal")
@@ -158,11 +159,21 @@ public class Card : MonoBehaviour
     }
     public void setNumText()
     {
-        card_text.text= number[0].ToString();
+        card_text.text = number[0].ToString();
         Debug.Log("number changed to " + number[0]);
+    }
+    public void Collapse()
+    {
+        if (color[0] != "" && color[1] != "")
+        {
+            int randomNum = Random.Range(0, 2);
+            color[0] = color[randomNum];
+            setColor();
+            ShowFront();
+        }
     }
     public virtual void Play(ref List<GameObject> deck, ref List<GameObject> discard_pile, ref int turnOrder)
     {
-       
+
     }
 }

@@ -229,6 +229,8 @@ public class GameManager : MonoBehaviour
         {
             Player_Base player = players[p].GetComponent<Player_Base>();
             Vector3 anchor = handAnchors[p];
+            player.handAnchor = anchor;
+            player.vertical = (p == 1 || p == 3);
             bool isHuman = (p == 0);               // bottom player
             float hFactor = isHuman ? HUMAN_SPACING_FACTOR : AI_SPACING_FACTOR;
 

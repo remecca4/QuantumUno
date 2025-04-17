@@ -10,69 +10,87 @@ public class Human_Player : Player_Base
 
     public override IEnumerator TakeTurn()
     {
-    Debug.Log("Human player's turn. Waiting for input...");
-    bool turnOver = false;
+        Debug.Log("Human player's turn. Waiting for input...");
+        bool turnOver = false;
 
-    // Show cards face-up
-    for (int i = 0; i < hand.Count; i++)
-    {
-        hand[i].GetComponent<Card>().ShowFront();
-    }
+        // Show cards face-up
+        for (int i = 0; i < hand.Count; i++)
+        {
+            hand[i].GetComponent<Card>().ShowFront();
+        }
 
-    // Check if there's any valid card to play
-    GameObject topCard = GameManager.Instance.discard_pile[GameManager.Instance.discard_pile.Count - 1];
-    Card topCardComponent = topCard.GetComponent<Card>();
+        // Check if there's any valid card to play
+        GameObject topCard = GameManager.Instance.discard_pile[GameManager.Instance.discard_pile.Count - 1];
+        Card topCardComponent = topCard.GetComponent<Card>();
 
-    bool hasPlayableCard = false;
-    foreach (GameObject cardObj in hand)
-    {
-        Card card = cardObj.GetComponent<Card>();
-        if (topCardComponent.card_type == "skip" || topCardComponent.card_type == "rev")
+        bool hasPlayableCard = false;
+        foreach (GameObject cardObj in hand)
+        {
+            Card card = cardObj.GetComponent<Card>();
+            if (IsPlayable(card, topCardComponent))
+            {
+                hasPlayableCard = true;
+                break;
+            }
+            /*if (topCardComponent.card_type == "skip" || topCardComponent.card_type == "rev")
             {
                 if (card.color[0] == topCardComponent.color[0] || card.color[1] == topCardComponent.color[0] ||
                (topCardComponent.color[1] != "" && (card.color[0] == topCardComponent.color[1] || card.color[1] == topCardComponent.color[1])))
-               {
-                hasPlayableCard = true;
-                break;
-               }
+                {
+                    hasPlayableCard = true;
+                    break;
+                }
             }
             else if (card.color.Contains(topCardComponent.color[0]) || card.number.Contains(topCardComponent.number[0]) || card.card_type == "gate" || topCardComponent.card_type == "gate")
             {
-            hasPlayableCard = true;
-            break;
+                hasPlayableCard = true;
+                break;
+            }*/
         }
-    }
 
-    if (!hasPlayableCard)
-    {
-        Debug.Log("No valid cards in hand. Drawing a card...");
-        DrawCard(GameManager.Instance.deck);
-        yield return new WaitForSeconds(0.5f);
-        yield break; // End turn after drawing
-    }
-
-    // Enable card clicking
-    EnablePlayerInput(true);
-
-    // Wait for a valid card to be selected
-    while (!turnOver)
-    {
-        if (selectedCard != null)
+        if (!hasPlayableCard)
         {
-            Card selected = selectedCard.GetComponent<Card>();
+            Debug.Log("No valid cards in hand. Drawing a card...");
+            DrawCard(GameManager.Instance.deck);
+            yield return new WaitForSeconds(0.5f);
+            yield break; // End turn after drawing
+        }
+
+        // Enable card clicking
+        EnablePlayerInput(true);
+
+        // Wait for a valid card to be selected
+        while (!turnOver)
+        {
+            if (selectedCard != null)
+            {
+                Card selected = selectedCard.GetComponent<Card>();
+                if (IsPlayable(selected, topCardComponent)){
+                    PlayCard(selectedCard);
+                    selectedCard = null;
+                    turnOver = true;
+                    break;
+                }
+                else
+                {
+                    Debug.Log("Invalid card selection. Try again.");
+                    selectedCard = null;
+                }
+                /*
+
             if (topCardComponent.card_type == "skip" || topCardComponent.card_type == "rev")
             {
                 if (selected.color[0] == topCardComponent.color[0] || selected.color[1] == topCardComponent.color[0] ||
                (topCardComponent.color[1] != "" && (selected.color[0] == topCardComponent.color[1] || selected.color[1] == topCardComponent.color[1])))
-               {
-                PlayCard(selectedCard);
-                selectedCard = null;
-                turnOver = true;
-                break;
-               }
-            }
-            else if (selected.color.Contains(topCardComponent.color[0]) || selected.number.Contains(topCardComponent.number[0]) || selected.card_type=="gate" || topCardComponent.card_type == "gate")
                 {
+                    PlayCard(selectedCard);
+                    selectedCard = null;
+                    turnOver = true;
+                    break;
+                }
+            }
+            else if (selected.color.Contains(topCardComponent.color[0]) || selected.number.Contains(topCardComponent.number[0]) || selected.card_type == "gate" || topCardComponent.card_type == "gate")
+            {
                 PlayCard(selectedCard);
                 selectedCard = null;
                 turnOver = true;
@@ -83,14 +101,15 @@ public class Human_Player : Player_Base
                 Debug.Log("Invalid card selection. Try again.");
                 selectedCard = null;
             }
+            */
+            }
+
+            yield return null;
         }
 
-        yield return null;
-    }
-
-    // Disable input after turn
-    EnablePlayerInput(false);
-    Debug.Log("Human player's turn is over.");
+        // Disable input after turn
+        EnablePlayerInput(false);
+        Debug.Log("Human player's turn is over.");
     }
 
     private void EnablePlayerInput(bool enable)
@@ -122,12 +141,21 @@ public class Human_Player : Player_Base
     private void PlayCard(GameObject cardObject)
     {
         Card card = cardObject.GetComponent<Card>();
-
+        Card discardTop = GameManager.Instance.discard_pile[GameManager.Instance.discard_pile.Count - 1].GetComponent<Card>();
+        discardTop.Collapse();
+        if (!IsPlayable(card, discardTop))
+        {
+            for (int i = 0; i < 2; ++i)
+                DrawCard(GameManager.Instance.deck);
+        }
         // Let the card handle its own logic (e.g., ReverseCard flips turn_order)
-        card.Play(ref GameManager.Instance.deck, ref GameManager.Instance.discard_pile,
-                  ref GameManager.Instance.turn_order);
-
-        foreach (GameObject discardCard in GameManager.Instance.discard_pile) {
+        else
+        {
+            card.Play(ref GameManager.Instance.deck, ref GameManager.Instance.discard_pile,
+                      ref GameManager.Instance.turn_order);
+        }
+        foreach (GameObject discardCard in GameManager.Instance.discard_pile)
+        {
             discardCard.SetActive(false);
         }
 
@@ -171,16 +199,16 @@ public class Human_Player : Player_Base
     }
 
 
-        private void ReorganizeHand()
+    private void ReorganizeHand()
     {
         if (hand.Count == 0) return;
 
         // same anchor you used in deal()
-        Vector3 handAnchor = new Vector3(-3f, -6f, 0);      // bottom centre
+    
 
         // width‑based gap (card width * (1 + spacingFactor))
         RectTransform rt0 = hand[0].GetComponent<RectTransform>();
-        float cardW       = rt0.rect.width  * rt0.lossyScale.x;
+        float cardW = rt0.rect.width * rt0.lossyScale.x;
 
         const float spacingFactor = 0.15f;                  // ➋ keep in‑sync
         float gapX = cardW * (1f + spacingFactor);
@@ -208,10 +236,9 @@ public class Human_Player : Player_Base
 
         // If the card is normal (e.g. number 3 green), allow match by number or color
         return candidate.number[0] == top.number[0] ||
-            candidate.color[0] == top.color[0] ||
-            candidate.color[1] == top.color[0] ||
-            candidate.color[0] == top.color[1] ||
-            candidate.color[1] == top.color[1];
-    }
+            (candidate.color[0] == top.color[0] || candidate.color[1] == top.color[0] ||
+                    (top.color[1] != "" && (candidate.color[0] == top.color[1] || candidate.color[1] == top.color[1])));
+    
+}
 
 }
