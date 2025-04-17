@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
             deck.RemoveAt(deck.Count - 1);
             if (firstCard.GetComponent<Card>().card_type != "gate")
                 break;
+            firstCard.SetActive(false);
         }
         StartCoroutine(GameLoop());
     } // SetupGame()

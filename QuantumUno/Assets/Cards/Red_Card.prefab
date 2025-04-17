@@ -82,22 +82,22 @@ MonoBehaviour:
   blueCard_skip: {fileID: 21300000, guid: 2ebdc2027f98d51448606576ba769a93, type: 3}
   greenCard_skip: {fileID: 21300000, guid: 1bc7002e5eb022447a3bf253bf151d76, type: 3}
   yellowCard_skip: {fileID: 21300000, guid: f40da24495374f24f8b9293a6bc849dd, type: 3}
-  red_yellowCard_skip: {fileID: 0}
-  red_blueCard_skip: {fileID: 0}
-  red_greenCard_skip: {fileID: 0}
-  blue_yellowCard_skip: {fileID: 0}
-  blue_greenCard_skip: {fileID: 0}
-  green_yellowCard_skip: {fileID: 0}
+  red_yellowCard_skip: {fileID: 8816074501842790156, guid: 4ddabda2d0856c14f8c5a889e860892b, type: 3}
+  red_blueCard_skip: {fileID: -1309443918075672715, guid: 7bcb71aaf1314da4d95d2e67530a8da4, type: 3}
+  red_greenCard_skip: {fileID: -5046431533055976546, guid: 9783a0fb84572b347b93c38434441f37, type: 3}
+  blue_yellowCard_skip: {fileID: 7322929948263145785, guid: bf310352959e9a04eb0dd6fe42bd4d2e, type: 3}
+  blue_greenCard_skip: {fileID: -667324861112900786, guid: b2a74e1e30eab6943b1828003eebbf29, type: 3}
+  green_yellowCard_skip: {fileID: -8226323667579933543, guid: c176b68d17ecd3045819557843a0c9be, type: 3}
   redCard_rev: {fileID: 21300000, guid: bc47b71590d5f7b42804c36ece1eb182, type: 3}
   blueCard_rev: {fileID: 21300000, guid: 3e288aee95f9a36418567faa94c85a9f, type: 3}
   greenCard_rev: {fileID: 21300000, guid: 9bc64e37784e8af4da023ac766a5aa00, type: 3}
   yellowCard_rev: {fileID: 21300000, guid: 657520c45af6bd3459472a1755fbb9bd, type: 3}
-  red_yellowCard_rev: {fileID: 0}
-  red_blueCard_rev: {fileID: 0}
-  red_greenCard_rev: {fileID: 0}
-  blue_yellowCard_rev: {fileID: 0}
-  blue_greenCard_rev: {fileID: 0}
-  green_yellowCard_rev: {fileID: 0}
+  red_yellowCard_rev: {fileID: -5897378075501158442, guid: adb6d2513f807074eb422d3650307094, type: 3}
+  red_blueCard_rev: {fileID: 2070032940409062565, guid: 23cd0fd92064d314991d1d05594c06d6, type: 3}
+  red_greenCard_rev: {fileID: 6264920493885292866, guid: ec65e6a52f2d47c45977fc7155c9a660, type: 3}
+  blue_yellowCard_rev: {fileID: -3786563209312314635, guid: 07592c729c11a2040afbe54637209743, type: 3}
+  blue_greenCard_rev: {fileID: 6147820273604481342, guid: 6e1419f710e087f458cbe36519d40200, type: 3}
+  green_yellowCard_rev: {fileID: 2877502151512243672, guid: 416a22441da0e774db7f624a8f4a442a, type: 3}
 --- !u!114 &733941311244963019
 MonoBehaviour:
   m_ObjectHideFlags: 0

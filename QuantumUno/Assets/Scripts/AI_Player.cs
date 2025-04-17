@@ -136,7 +136,7 @@ public class AI_Player : Player_Base
             return true;
 
         // If top card is a special card like skip/rev
-        if (top.card_type == "skip" || top.card_type == "rev")
+        if (top.card_type == "skip" || top.card_type == "rev" || candidate.card_type=="skip"|| candidate.card_type == "rev")
         {
             // Only same type AND same color allowed
             return candidate.card_type == top.card_type &&
