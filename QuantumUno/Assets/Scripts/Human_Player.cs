@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Human_Player : Player_Base
 {
+    void Awake() { isHuman = true; }
     private GameObject selectedCard;
 
     public override IEnumerator TakeTurn()

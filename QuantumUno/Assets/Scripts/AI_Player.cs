@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AI_Player : Player_Base
 {
+    void Awake() { isHuman = false; }
     public override IEnumerator TakeTurn()
     {
         Debug.Log("AI is thinking...");

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player_Base : MonoBehaviour
 {
+
+    public bool isHuman = false;
     public List<GameObject> hand;
    public virtual IEnumerator TakeTurn() { 
         yield return new WaitForSeconds(1.0f);

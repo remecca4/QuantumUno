@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public GameObject discard_pos;
     //for reverse cards cw: player index increases, ccw: player index decreases
     public int turn_order = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -95,12 +97,21 @@ public class GameManager : MonoBehaviour
             yield return StartCoroutine(currentPlayer.TakeTurn());
   
             // Check for win condition
-            if (currentPlayer.hand.Count==0)
+            // if (currentPlayer.hand.Count==0)
+            // {
+            //     bool human = currentPlayer is Human_Player;
+            //     GameResult.humanWon  = human; 
+            //     GameResult.playScene = SceneManager.GetActiveScene().name;
+            //     SceneManager.LoadScene("End_Screen");
+            //     yield break;    
+            // }
+            if (currentPlayer.hand.Count == 0)
             {
-                Debug.Log($"Player {currentPlayerIndex % players.Count + 1} wins!");
-                gameOver = true;
-                break;
-            } // if
+                GameResult.humanWon  = currentPlayer.isHuman; 
+                GameResult.playScene = SceneManager.GetActiveScene().name;
+                SceneManager.LoadScene("End_Screen");
+                yield break;
+            }
 
             currentPlayerIndex += turn_order;
             
