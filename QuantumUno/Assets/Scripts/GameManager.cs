@@ -96,23 +96,6 @@ public class GameManager : MonoBehaviour
             //add this coroutine to player classes or game manager?
             yield return StartCoroutine(currentPlayer.TakeTurn());
   
-            // Check for win condition
-            // if (currentPlayer.hand.Count==0)
-            // {
-            //     bool human = currentPlayer is Human_Player;
-            //     GameResult.humanWon  = human; 
-            //     GameResult.playScene = SceneManager.GetActiveScene().name;
-            //     SceneManager.LoadScene("End_Screen");
-            //     yield break;    
-            // }
-            // if (currentPlayer.hand.Count == 0)
-            // {
-            //     GameResult.humanWon  = currentPlayer.isHuman; 
-            //     GameResult.playScene = SceneManager.GetActiveScene().name;
-            //     SceneManager.LoadScene("End_Screen");
-            //     yield break;
-            // }
-
             currentPlayerIndex += turn_order;
             
             if (currentPlayerIndex < 0)
